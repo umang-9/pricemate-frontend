@@ -11,7 +11,7 @@ import { Links } from '../App';
 
 function Header() {
 	return (
-		<Navbar expand='lg' className='bg-body-tertiary'>
+		<Navbar sticky="top" expand='lg' className='bg-body-tertiary'>
 			<Container>
 				<h1 className='main-logo'>
 					<Navbar.Brand>
@@ -23,7 +23,14 @@ function Header() {
 					</Navbar.Brand>
 				</h1>
 
-				<Navbar.Toggle aria-controls='basic-navbar-nav' />
+				<Navbar.Toggle aria-controls='basic-navbar-nav'>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</Navbar.Toggle>
 
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='ms-auto'>

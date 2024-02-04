@@ -1,3 +1,33 @@
+:root {
+    /* color */
+    --primaryColor: #ff780a;
+    --secondaryColor: #3c4a4f;
+    --lightColor: #fff;
+    --darkColor: #000;
+    --duration: 1.5s;
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+	/* font-size: 26px;
+	line-height: 1.2; */
+	font-family: 'Raleway', sans-serif;
+	background: #fff;
+	font-weight: 400;
+	text-align: left;
+	overflow-x: hidden;
+	font-size: 1.125rem;
+}
+
+h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', sans-serif;
+	color: #ff780a;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-top: 0;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
@@ -5,10 +35,172 @@ img {
 	height: auto;
 }
 
+a,
+input[type="submit"],
+input[type="button"],
+button {
+	outline: 0 none;
+	-webkit-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+}
+
+[type="search"] {
+	box-shadow: none;
+}
+
+.section {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* button css start */
+.btn {
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    padding: 10px 35px;
+    border-radius: 5px;
+}
+.btn:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+.btn-check:active+.btn-primary:focus, 
+.btn-check:checked+.btn-primary:focus, 
+.btn-primary.active:focus, 
+.btn-primary:active:focus, 
+.show>.btn-primary.dropdown-toggle:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+.btn-primary {
+    color: var(--lightColor);
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor);
+}
+.btn-primary:active, 
+.btn-primary:focus,
+.btn-primary:hover {
+    color: var(--lightColor);
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+}
+.btn-secondary {
+    color: var(--lightColor);
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+}
+.btn-secondary:focus,
+.btn-secondary:hover {
+    color: var(--lightColor);
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor);
+}
+/* button css start */
+
 
 /* Header css start */
 .main-logo,
 .navbar-brand {
-    max-width: 80px;
+    max-width: 120px;
+	margin: 0;
+}
+
+.navbar {
+	--bs-nav-link-color: var(--secondaryColor);
+    --bs-nav-link-hover-color: var(--secondaryColor);
+	--bs-navbar-active-color: var(--primaryColor);
+}
+
+.nav-link {
+	font-weight: 500;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: 600;
 }
 /* Header css end */
+
+
+/* Landing page css start */
+.carousel-item {
+    height: 550px;
+	position: relative;
+}
+
+.bg-overlay {
+    background-image: -moz-linear-gradient(-29deg, #000 0px, #000 100%);
+    background-image: -moz-linear-gradient(-29deg, #000 0, #000 100%);
+    background-image: -webkit-linear-gradient(-29deg, #000 0, #000 100%);
+    background-image: -ms-linear-gradient(-29deg, #000 0, #000 100%);
+    background-image: linear-gradient(-29deg, #000 0, #000 100%);
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.carousel-item .img-fluid {
+	width: 100%;
+    height: 100%;
+	object-fit: cover;
+}
+
+.carousel-caption {
+    left: 50%;
+    top: 50%;
+	bottom: auto;
+	right: auto;
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
+.price-mate-icon {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 20px;
+    margin: auto;
+    display: inline-block;
+}
+
+.price-mate-icon img {
+    max-width: 100px;
+}
+
+.carousel-caption h3 {
+    color: var(--lightColor);
+    font-size: 3rem;
+}
+
+.carousel-caption p {
+    font-size: 2rem;
+}
+/* Landing page css end */
+
+
+/* 
+COLORS: 
+Orange = #ff780a
+Gray = #3c4a4f
+
+FONT FAMILY
+font-family: 'Raleway', sans-serif;
+light: 300
+Regular: 400
+Medium: 500
+Semi Bold: 600
+Bold: 700
+Extra Bold: 800
+Black: 900
+*/
+
