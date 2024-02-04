@@ -12,19 +12,20 @@ import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
 import RootLayout from './layouts/RootLayout';
 
-/*
-links
-indexURL: '/index',
-login: '/login',
-signUp: '/signup',
-*/
+
+export const Links = {
+	indexURL: '/index',
+	login: '/login',
+	signUp: '/signup',
+}
+
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<RootLayout />}>
 			<Route index element={<Index />} />
-			<Route path='login' element={<Login />} />
-			<Route path='signup' element={<Signup />} />
+			<Route path={Links.login} element={<Login />} />
+			<Route path={Links.signUp} element={<Signup />} />
 			<Route path='*' element={<PageNotFound />} />
 		</Route>,
 	),

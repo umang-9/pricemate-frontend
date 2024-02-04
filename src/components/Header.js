@@ -4,18 +4,24 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Image from 'react-bootstrap/Image';
 
 import { NavLink } from 'react-router-dom';
+import { Links } from '../App';
 
 function Header() {
 	return (
 		<Navbar expand='lg' className='bg-body-tertiary'>
 			<Container>
-				<Navbar.Brand>
-					<LinkContainer to='/'>
-						<NavLink>Price Match</NavLink>
-					</LinkContainer>
-				</Navbar.Brand>
+				<h1 className='main-logo'>
+					<Navbar.Brand>
+						<LinkContainer to='/'>
+							<NavLink>
+								<Image src="assets/images/logo.png" alt="Price Match" fluid />
+							</NavLink>
+						</LinkContainer>
+					</Navbar.Brand>
+				</h1>
 
 				<Navbar.Toggle aria-controls='basic-navbar-nav' />
 
@@ -25,11 +31,11 @@ function Header() {
 							<Nav.Link>Home</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to='/login'>
+						<LinkContainer to={Links.login}>
 							<Nav.Link>Login</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to='/signup'>
+						<LinkContainer to={Links.signUp}>
 							<Nav.Link>Signup</Nav.Link>
 						</LinkContainer>
 					</Nav>

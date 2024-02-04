@@ -1,0 +1,14 @@
+img {
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+}
+
+
+/* Header css start */
+.main-logo,
+.navbar-brand {
+    max-width: 80px;
+}
+/* Header css end */
