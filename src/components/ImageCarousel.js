@@ -13,7 +13,7 @@ const carouselItems = [
     {
         image: 'assets/images/banner2.jpg',
         title: 'Say Goodbye to Overpaying!',
-        content: 'Bridging the Gap between Budget and Bargains!'
+        content: 'Price Mate Finds the Best Deals for You.'
     },
     {
         image: 'assets/images/banner3.jpg',
@@ -27,8 +27,8 @@ function ImageCarousel() {
     return (
         <section className='bannner-section pb-5'>
             <Carousel fade>
-                {carouselItems.map(item => (
-                    <Carousel.Item>
+                {carouselItems.map((item, i) => (
+                    <Carousel.Item key={i}>
                         <Image src={item.image} alt={item.title} fluid />
                         <div className='bg-overlay'></div>
                         <Carousel.Caption>

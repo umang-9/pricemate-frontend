@@ -17,7 +17,7 @@ function Header() {
 					<Navbar.Brand>
 						<LinkContainer to='/'>
 							<NavLink>
-								<Image src="assets/images/logo.png" alt="Price Match" fluid />
+								<Image src="/assets/images/logo.png" alt="Price Match" fluid />
 							</NavLink>
 						</LinkContainer>
 					</Navbar.Brand>

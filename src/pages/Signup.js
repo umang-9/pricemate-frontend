@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,11 +6,33 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import { useForm } from 'react-hook-form';
+import { useRegisterUserMutation } from '../services/userAuthApi'
 
 function Signup() {
-	const { register,
+	const [registerUser, { isLoading }] = useRegisterUserMutation();
+	const [server_error, setServerError] = useState({})
+
+	const { register, getValues, 
 		handleSubmit,
 		formState: { errors } } = useForm();
+	
+	const onSubmit = async (data) => {
+		console.log(data);
+		const res = await registerUser(data)
+		console.log(res);
+		// if (res.error) {
+			// console.log(typeof (res.error.data.errors))
+			// console.log(res.error.data.errors)
+			// setServerError(res.error.data.errors)
+		// }
+		if (res.data) {
+			// console.log(typeof (res.data))
+			// console.log(res.data)
+			// storeToken(res.data.token)
+			// navigate('/dashboard')
+		}
+	}
+
 	return (
 		<main>
 			<section className='pt-5 pb-5'>
@@ -18,17 +40,15 @@ function Signup() {
 					<h2>Signup</h2>
 					<Row>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit((data) => {
-								console.log(data);
-							})}>
+							<Form onSubmit={handleSubmit(onSubmit)}>
 								<Form.Group
 									className='mb-3'
-									controlId='formBasicEmail'>
+									controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
 										type='text'
 										placeholder='Enter first name'
-										{...register('firstName', {
+										{...register('first_name', {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]{2,50}$/,
@@ -36,12 +56,12 @@ function Signup() {
 											}
 										})}
 										aria-invalid={
-											errors.firstName
+											errors.first_name
 												? 'true'
 												: 'false'
 										}
 									/>
-									{errors.firstName?.type ===
+									{errors.first_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
 												Firstname is required
@@ -51,12 +71,12 @@ function Signup() {
 
 								<Form.Group
 									className='mb-3'
-									controlId='formBasicEmail'>
+									controlId='last_name'>
 									<Form.Label>Last Name</Form.Label>
 									<Form.Control
 										type='text'
 										placeholder='Enter last name'
-										{...register('lastName', {
+										{...register('last_name', {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]+(?:['-][a-zA-Z]+)*$/,
@@ -64,12 +84,12 @@ function Signup() {
 											}
 										})}
 										aria-invalid={
-											errors.lastName
+											errors.last_name
 												? 'true'
 												: 'false'
 										}
 									/>
-									{errors.lastName?.type ===
+									{errors.last_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
 												lastName is required
@@ -79,7 +99,7 @@ function Signup() {
 
 								<Form.Group
 									className='mb-3'
-									controlId='formBasicEmail'>
+									controlId='email'>
 									<Form.Label>Email</Form.Label>
 									<Form.Control
 										type='text'
@@ -107,7 +127,7 @@ function Signup() {
 
 								<Form.Group
 									className='mb-3'
-									controlId='formBasicPassword'>
+									controlId='password'>
 									<Form.Label>Password</Form.Label>
 									<Form.Control
 										type='password'
@@ -132,6 +152,35 @@ function Signup() {
 										</Form.Text>
 									)}
 								</Form.Group>
+
+								{/* <Form.Group
+									className='mb-3'
+									controlId='confirmPassword'>
+									<Form.Label>Confirm Password</Form.Label>
+									<Form.Control
+										type='password'
+										placeholder='Confirm Password'
+										{...register('confirm_password', {
+											validate: {
+												noMatch: value => {
+												   return value !== getValues("password")
+													  ? "Passwords do not match"
+													  : undefined;
+												},
+											 },
+										})}
+										aria-invalid={
+											errors.password
+												? 'true'
+												: 'false'
+										}
+									/>
+									{errors.password && (
+										<Form.Text className='text-danger'>
+											{errors.password.message}
+										</Form.Text>
+									)}
+								</Form.Group> */}
 
 								{/* Login button */}
 								<Button variant='primary' type='submit'>

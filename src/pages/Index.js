@@ -1,15 +1,7 @@
 import React from 'react';
 
 import ImageCarousel from '../components/ImageCarousel';
-
-import { Links } from '../App'; 
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import FeaturesSection from '../components/FeaturesSection';
 
 function Index() {
 	return (
@@ -18,6 +10,8 @@ function Index() {
 			{/* Banner section start */}
 			<ImageCarousel />
 			{/* Banner section end */}
+
+			<FeaturesSection />
 		</main>
 	);
 }
