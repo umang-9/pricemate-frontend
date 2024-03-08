@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,18 +7,41 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+	const [nonFieldErrors, setNonFieldErrors] = useState([]);
+	console.log(nonFieldErrors);
+	const navigate = useNavigate();
+
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
-	const onSubmit = (data) => console.log(data);
+
+	const onSubmit = async (inputData) => {
+		try {
+            const response = await axios.post('http://localhost:8000/login/', inputData, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                },
+            });
+            if (response.data && response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                // then redirect to other page
+                navigate('/'); // Redirect to the home page
+            }
+        } catch (error) {
+            console.error(error);
+            if (error.response && error.response.data.non_field_errors) {
+                setNonFieldErrors(error.response.data.non_field_errors);
+            }
+        }
+	};
 
 	return (
-		
 		<main>
 			<section className='pt-5 pb-5'>
 				<Container>
@@ -25,6 +49,12 @@ function Login() {
 					<Row>
 						<Col md={6}>
 							<Form onSubmit={handleSubmit(onSubmit)}>
+								{/* Non field errors */}
+								{nonFieldErrors.map((error) => {
+									return (
+										<p style={{ color: 'red' }}>{error}</p>
+									);
+								})}
 								{/* Email */}
 								<Form.Group
 									className='mb-3'
@@ -33,19 +63,16 @@ function Login() {
 									<Form.Control
 										type='email'
 										placeholder='Enter email'
-										{...register('userName', {
+										{...register('email', {
 											required: true,
 										})}
 										aria-invalid={
-											errors.userName
-												? 'true'
-												: 'false'
+											errors.userName ? 'true' : 'false'
 										}
 									/>
-									{errors.userName?.type ===
-										'required' && (
+									{errors.email?.type === 'required' && (
 										<Form.Text className='text-danger'>
-											Username is required
+											Email is required
 										</Form.Text>
 									)}
 								</Form.Group>
@@ -58,13 +85,10 @@ function Login() {
 										type='password'
 										placeholder='Password'
 										{...register('password', {
-											required:
-												'Password is required',
+											required: 'Password is required',
 										})}
 										aria-invalid={
-											errors.password
-												? 'true'
-												: 'false'
+											errors.password ? 'true' : 'false'
 										}
 									/>
 									{errors.password && (
