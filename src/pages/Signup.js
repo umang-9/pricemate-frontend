@@ -1,17 +1,32 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 function Signup() {
-	const { register,
-		handleSubmit,
-		formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const navigate = useNavigate();
+
+	const onSubmit = async (data) => {
+		try {
+			const response = await axios.post('http://localhost:8000/signup/', data);
+			console.log(response.data);
+			// Handle successful registration
+			navigate('/login');
+		} catch (error) {
+			console.error('Error:', error);
+			// Handle registration failure
+		}
+	};
+
 	return (
 		<main>
 			<section className='pt-5 pb-5'>
@@ -19,17 +34,13 @@ function Signup() {
 					<h2>Signup</h2>
 					<Row>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit((data) => {
-								console.log(data);
-							})}>
-								<Form.Group
-									className='mb-3'
-									controlId='formBasicEmail'>
+							<Form onSubmit={handleSubmit(onSubmit)}>
+								<Form.Group className='mb-3' controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
 										type='text'
 										placeholder='Enter first name'
-										{...register('firstName', {
+										{...register('first_name', {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]{2,50}$/,
@@ -37,27 +48,26 @@ function Signup() {
 											}
 										})}
 										aria-invalid={
-											errors.firstName
+											errors.first_name
 												? 'true'
 												: 'false'
 										}
 									/>
-									{errors.firstName?.type ===
+									{errors.first_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
 												Firstname is required
 											</Form.Text>
-										)}
+										)
+									}
 								</Form.Group>
 
-								<Form.Group
-									className='mb-3'
-									controlId='formBasicEmail'>
+								<Form.Group className='mb-3' controlId='last_name'>
 									<Form.Label>Last Name</Form.Label>
 									<Form.Control
 										type='text'
 										placeholder='Enter last name'
-										{...register('lastName', {
+										{...register('last_name', {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]+(?:['-][a-zA-Z]+)*$/,
@@ -65,25 +75,24 @@ function Signup() {
 											}
 										})}
 										aria-invalid={
-											errors.lastName
+											errors.last_name
 												? 'true'
 												: 'false'
 										}
 									/>
-									{errors.lastName?.type ===
+									{errors.last_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
 												lastName is required
 											</Form.Text>
-										)}
+										)
+									}
 								</Form.Group>
 
-								<Form.Group
-									className='mb-3'
-									controlId='formBasicEmail'>
+								<Form.Group className='mb-3' controlId='email'>
 									<Form.Label>Email</Form.Label>
 									<Form.Control
-										type='text'
+										type='email'
 										placeholder='Enter email'
 										{...register('email', {
 											required: true,
@@ -103,19 +112,17 @@ function Signup() {
 											<Form.Text className='text-danger'>
 												email is required
 											</Form.Text>
-										)}
+										)
+									}
 								</Form.Group>
 
-								<Form.Group
-									className='mb-3'
-									controlId='formBasicPassword'>
+								<Form.Group className='mb-3' controlId='password'>
 									<Form.Label>Password</Form.Label>
 									<Form.Control
 										type='password'
-										placeholder='Enter Password'
+										placeholder='Enter password'
 										{...register('password', {
-											required:
-												'Password is required',
+											required: true,
 											pattern: {
 												value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 												message: 'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.'
@@ -134,7 +141,6 @@ function Signup() {
 									)}
 								</Form.Group>
 
-								{/* Login button */}
 								<Button variant='primary' type='submit'>
 									Signup
 								</Button>
