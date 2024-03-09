@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function Signup() {
 	const { register,
