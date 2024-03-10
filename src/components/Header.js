@@ -5,11 +5,25 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
-import { NavLink } from 'react-router-dom';
+
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Links } from '../App';
 
 function Header() {
+	const navigate = useNavigate();
+
+	const access_token = localStorage.getItem('token');
+
+	const handleLogout = () => {
+        // Clear the access token from localStorage
+        localStorage.removeItem('token');
+
+        // Redirect the user to the login page
+        navigate('/login');
+    };
+
 	return (
 		<Navbar sticky="top" expand='lg' className='bg-body-tertiary'>
 			<Container>
@@ -34,17 +48,30 @@ function Header() {
 
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='ms-auto'>
-						<LinkContainer to='/'>
-							<Nav.Link>Home</Nav.Link>
-						</LinkContainer>
+						{access_token && (
+                            <LinkContainer to='/'>
+                                <Nav.Link>Home</Nav.Link>
+                            </LinkContainer>
+                        )}
 
-						<LinkContainer to={Links.login}>
-							<Nav.Link>Login</Nav.Link>
-						</LinkContainer>
+						{!access_token && (
+                            <LinkContainer to={Links.login}>
+                                <Nav.Link>Login</Nav.Link>
+                            </LinkContainer>
+                        )}
 
-						<LinkContainer to={Links.signUp}>
-							<Nav.Link>Signup</Nav.Link>
-						</LinkContainer>
+                        {!access_token && (
+                            <LinkContainer to={Links.signUp}>
+                                <Nav.Link>Signup</Nav.Link>
+                            </LinkContainer>
+                        )}
+
+						{access_token && (
+                            // <a className="btn btn-small btn-primary" onClick={handleLogout}>Logout</a>
+							<Button className='ms-2' variant="primary" size="sm" onClick={handleLogout}>
+								Logout
+							</Button>
+                        )}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

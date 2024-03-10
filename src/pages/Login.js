@@ -14,6 +14,8 @@ function Login() {
 	const [nonFieldErrors, setNonFieldErrors] = useState([]);
 	console.log(nonFieldErrors);
 	const navigate = useNavigate();
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	console.log("isLoggedIn: " +isLoggedIn);
 
 	const {
 		register,
@@ -30,6 +32,10 @@ function Login() {
             });
             if (response.data && response.data.token) {
                 localStorage.setItem('token', response.data.token);
+
+				// Set isLoggedIn to true after successful login
+                setIsLoggedIn(true);
+
                 // then redirect to other page
                 navigate('/'); // Redirect to the home page
             }
@@ -67,7 +73,7 @@ function Login() {
 											required: true,
 										})}
 										aria-invalid={
-											errors.userName ? 'true' : 'false'
+											errors.email ? 'true' : 'false'
 										}
 									/>
 									{errors.email?.type === 'required' && (
