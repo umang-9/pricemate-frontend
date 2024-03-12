@@ -4,6 +4,8 @@
     --secondaryColor: #3c4a4f;
     --lightColor: #fff;
     --darkColor: #000;
+    --lighBgColor: #eee;
+    --secondaryBgColor: rgba(60,74,79,0.3);
     --duration: 1.5s;
     --ease: cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -22,7 +24,7 @@ body {
 h1, .h2, .h3, .h4, .h5, .h6,
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Raleway', sans-serif;
-	color: #ff780a;
+	color: var(--primaryColor);
 	font-weight: 700;
 	line-height: 1.2;
 	margin-top: 0;
@@ -49,6 +51,10 @@ button {
 
 [type="search"] {
 	box-shadow: none;
+}
+
+body .bg-primary {
+    background-color: var(--secondaryColor) !important;
 }
 
 .section {
@@ -108,7 +114,7 @@ p:last-child {
 /* Header css start */
 .main-logo,
 .navbar-brand {
-    max-width: 120px;
+    max-width: 90px;
 	margin: 0;
 }
 
@@ -185,6 +191,30 @@ p:last-child {
 .carousel-caption p {
     font-size: 2rem;
 }
+.features-section .card {
+    border: none;
+    align-items: center;
+    text-align: center;
+}
+.features-section .card-img-top {
+    max-width: 120px;
+    width: auto;
+}
+.features-section .card-title {
+    color: var(--secondaryColor)
+}
+.how-it-works-section {
+    background-color: var(--lighBgColor);
+}
+body .badge.bg-primary {
+    font-size: 2rem;
+    width: 55px;
+    height: 55px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+}
 /* Landing page css end */
 
 
@@ -203,4 +233,3 @@ Bold: 700
 Extra Bold: 800
 Black: 900
 */
-

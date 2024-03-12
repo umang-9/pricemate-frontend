@@ -2,6 +2,7 @@ import React from 'react';
 
 import ImageCarousel from '../components/ImageCarousel';
 import FeaturesSection from '../components/FeaturesSection';
+import HowItWorks from '../components/HowItWorks';
 
 function Index() {
 	return (
@@ -12,6 +13,7 @@ function Index() {
 			{/* Banner section end */}
 
 			<FeaturesSection />
+			<HowItWorks />
 		</main>
 	);
 }

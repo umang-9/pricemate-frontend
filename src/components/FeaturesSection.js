@@ -7,27 +7,28 @@ import Col from 'react-bootstrap/Col';
 
 const featureItems = [
     {
-        image: 'assets/images/banner1.jpg',
-        title: 'Price Mate:',
-        content: 'Bridging the Gap between Budget and Bargains!'
+        image: 'assets/images/price_comparison_engine_icon.svg',
+        title: 'Price Comparison Engine',
+        content: 'Easily compare prices across multiple retailers with our intuitive price comparison engine. Find the best deals on the products you love without the hassle of visiting numerous websites.'
     },
     {
-        image: 'assets/images/banner2.jpg',
-        title: 'Say Goodbye to Overpaying!',
-        content: 'Price Mate Finds the Best Deals for You.'
+        image: 'assets/images/wide_retailer_network_icon.png',
+        title: 'Wide Retailer Network',
+        content: "Gain access to a vast network of reputable retailers, including major brands and online marketplaces. Shop confidently knowing that you're getting competitive prices from trusted sources."
     },
     {
-        image: 'assets/images/banner3.jpg',
-        title: 'Match. Save. Smile. Repeat.',
-        content: 'Experience the Price Mate Advantage!'
+        image: 'assets/images/mobile_accessaibility_icon.svg',
+        title: 'Mobile Accessibility',
+        content: "Access our price matching platform anytime, anywhere, with our mobile-friendly interface. Whether you're at home or on the go, take advantage of our features conveniently from your smartphone or tablet."
     }
 ]
 
 function FeaturesSection() {
   return (
-    <section className='bannner-section pb-5'>
+    <section className='features-section pt-5 pb-5'>
         <Container>
-            <h2>Our Features</h2>
+            <h2 className="text-center">Our Features</h2>
+            <p className='text-center mb-5'>With our comprehensive suite of features, Price Match empowers you to shop smarter, save money, and enjoy hassle-free shopping experiences.</p>
             <Row>
                 {featureItems.map((item, i) => (
                     <Col key={i} md={4}>
