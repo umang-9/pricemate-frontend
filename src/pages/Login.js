@@ -49,7 +49,7 @@ function Login() {
 
 	return (
 		<main>
-			<section className='pt-5 pb-5'>
+			<section className='login-section'>
 				<Container>
 					<h2 className='text-center'>Login</h2>
 					<Row>

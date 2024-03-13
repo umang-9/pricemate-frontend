@@ -27,7 +27,7 @@ function Signup() {
 
 	return (
 		<main>
-			<section className='pt-5 pb-5'>
+			<section className='signup-section'>
 				<Container>
 					<h2>Signup</h2>
 					<Row>
@@ -95,7 +95,7 @@ function Signup() {
 										{...register('email', {
 											required: true,
 											pattern: {
-												value: /^[\w\.-]+@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z]{2,}$/,
+												value: /^[\w.-]+@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z]{2,}$/,
 												message: 'Not a valid email'
 											}
 										})}

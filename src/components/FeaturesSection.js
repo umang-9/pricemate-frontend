@@ -25,7 +25,7 @@ const featureItems = [
 
 function FeaturesSection() {
   return (
-    <section className='features-section pt-5 pb-5'>
+    <section className='features-section'>
         <Container>
             <h2 className="text-center">Our Features</h2>
             <p className='text-center mb-5'>With our comprehensive suite of features, Price Match empowers you to shop smarter, save money, and enjoy hassle-free shopping experiences.</p>

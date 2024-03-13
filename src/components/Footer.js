@@ -1,9 +1,93 @@
-const Footer = () => {
-	return (
-		<div>
-			<p></p>
-		</div>
-	);
-};
+import React from 'react';
 
-export default Footer;
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/esm/Image';
+
+import { Links } from '../App'; 
+import { Link } from 'react-router-dom';
+
+function Footer() {
+  return (
+	<footer>
+		<div className='footer-top'>
+			<Container>
+				<Row>
+
+					<Col sm={12} md={6} lg={3}>
+						<div className="foot-box">
+							<Image src="assets/images/logo.png" alt="Price Match" fluid />
+							<h5 className='mt-3'>Our address:</h5>
+							<address>
+								<p>403-7 Erie Avnue</p>
+								<p>Brantford, ON-N3S0K5</p>
+								<p>Canada</p>
+							</address>
+						</div>
+					</Col>
+
+					<Col sm={12} md={6} lg={3}>
+						<div className="foot-box">
+							<h5>QUICK LINKS</h5>
+							<ul>
+								<li>
+									<Link to={Links.indexURL}> 
+										Home
+									</Link>
+								</li>
+								<li>
+									<Link to={Links.login}> 
+										Login
+									</Link>
+								</li>
+								<li>
+									<Link to={Links.signUp}> 
+										Singup
+									</Link>
+								</li>
+							</ul>
+						</div>
+					</Col>
+					
+					<Col sm={12} md={6} lg={3}>
+						<div className="foot-box">
+							<h5>CONTACT INFORMATION</h5>
+							<p>Have questions or need support? Contact us:</p>
+							<ul>
+								<li>Email: <a href="mailto:info@pricematch.com">info@pricematch.com</a></li>
+								<li>Phone: <a href="tel:18001234567">1-800-123-4567</a></li>
+							</ul>
+						</div>
+					</Col>
+					
+					<Col sm={12} md={6} lg={3}>
+						<div className="foot-box">
+							<h5>CONNECT WITH US</h5>
+							<p>Stay connected with us on social media for updates, deals, and more:</p>
+							<div className="social-icons">
+								<a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a>
+								<a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+								<a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+								<a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</Col>
+					
+					
+				</Row>
+			</Container>
+		</div>
+
+		<div className='footer-bottom'>
+			<Container>
+				<p className="copyright">
+					© 2024 <Link to={Links.indexURL}>Price Match </Link>. All rights reserved
+				</p>
+			</Container>
+		</div>
+	</footer>
+  )
+}
+
+export default Footer

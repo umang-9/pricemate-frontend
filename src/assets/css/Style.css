@@ -5,6 +5,7 @@
     --lightColor: #fff;
     --darkColor: #000;
     --lighBgColor: #eee;
+    --primaryBgColor: rgba(255,120,10, 0.1);
     --secondaryBgColor: rgba(60,74,79,0.3);
     --duration: 1.5s;
     --ease: cubic-bezier(0.25, 1, 0.5, 1);
@@ -57,15 +58,25 @@ body .bg-primary {
     background-color: var(--secondaryColor) !important;
 }
 
-.section {
-	padding-top: 70px;
-	padding-bottom: 70px;
-}
-
 p:last-child {
     margin-bottom: 0;
 }
 
+section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+a {
+    color: var(--secondaryColor);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover,
+a:active {
+    color: var(--primaryColor);
+}
 /* button css start */
 .btn {
     font-weight: 500;
@@ -132,6 +143,59 @@ p:last-child {
     font-weight: 600;
 }
 /* Header css end */
+
+
+/* Footer css start */
+.footer-top {
+    background-color: var(--primaryBgColor);
+    padding: 3rem 0;
+}
+.footer-bottom {
+    background-color: var(--primaryColor);
+    padding: 1rem 0;
+    text-align: center;
+    color: var(--lightColor);
+}
+.footer-bottom a {
+    color: var(--lightColor);
+}
+.footer-bottom a:hover,
+.footer-bottom a:active {
+    color: var(--lightColor);
+}
+.foot-box a {
+    font-weight: 500;
+}
+.foot-box img {
+    max-width: 90px;
+}
+address p {
+    margin: 0 0 3px;
+}
+.footer-top ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.social-icons {
+    display: flex;
+}
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    background: var(--secondaryBgColor);
+    color: #fff;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.social-icons a:hover {
+    background: var(--secondaryColor);
+}
+/* Footer css end */
 
 
 /* Landing page css start */
@@ -214,6 +278,37 @@ body .badge.bg-primary {
     display: flex;
     justify-content: center;
     font-family: sans-serif;
+}
+.banner-container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.banner-container-reverse {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    flex-direction: row-reverse;
+}
+.text-side {
+    width: 50%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5rem;
+    background-color: #E9E9E9;
+}
+.img-side {
+    width: 50%;
+    text-align: end;
+    background-color: #E9E9E9;
+}
+.img-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 /* Landing page css end */
 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -41,7 +40,7 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section className='how-it-works-section pt-5 pb-5'>
+    <section className='how-it-works-section'>
     <Container>
         <h2 className="text-center">How It Works</h2>
         <p className="text-center mb-5">Find the Best Deals with Ease</p>

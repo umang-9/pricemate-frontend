@@ -1,7 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 import { Links } from '../App'; 
-
 import { Link } from 'react-router-dom';
 
 const carouselItems = [
@@ -25,7 +24,7 @@ const carouselItems = [
 function ImageCarousel() {
 
     return (
-        <section className='bannner-section pb-5'>
+        <section className='bannner-section pt-0 pb-0'>
             <Carousel fade>
                 {carouselItems.map((item, i) => (
                     <Carousel.Item key={i}>

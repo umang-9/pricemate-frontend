@@ -14,7 +14,7 @@ import RootLayout from './layouts/RootLayout';
 
 
 export const Links = {
-	indexURL: '/index',
+	indexURL: '/',
 	login: '/login',
 	signUp: '/signup',
 }

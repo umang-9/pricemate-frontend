@@ -191,10 +191,29 @@
         left: calc(50% - 5px);
         top: 12px;
     }
+
+    .text-side {
+        padding: 30px;
+    }
 }
 
-@media (max-width: 768px) {
-    
+@media (max-width: 767px) {
+    .footer-top {
+        padding: 3rem 0 0;
+    }
+    .foot-box {
+        margin-bottom: 3rem;
+    }
+    .banner-container,
+    .banner-container-reverse {
+        flex-direction: column-reverse;
+    }
+    .text-side, .img-side {
+        width: 100%;
+    }
+    .text-side {
+        padding: 30px;
+    }
 }
 
 @media (max-width: 575px) {
