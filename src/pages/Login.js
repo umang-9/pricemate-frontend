@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { Link } from "react-router-dom";
+import { Links } from '../App';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -109,19 +112,25 @@ function Login() {
 								</Form.Group>
 
 								<Form.Group
-									className='mb-3'
+									className='mb-3 text-end'
 									controlId='remeberMeCheckbox'>
-									<Form.Check
+									{/* <Form.Check
 										type='checkbox'
 										label='Remember me'
-									/>
-									<a className='mb-3' href='/forgot-password'>Forgot password?</a>
+									/> */}
+									{/* <a className='mb-3' href='/forgot-password'>Forgot password?</a> */}
+									<Link to={Links.forgotPassword}>Forgot password?</Link>
 								</Form.Group>
 
 								{/* Login button */}
 								<Button variant='primary' type='submit'>
 									Login
 								</Button>
+								
+								<p className='mt-2'>
+									Not a member? <Link to={Links.signUp}>Register Now</Link>
+								</p>
+
 							</Form>
 						</Col>
 					</Row>

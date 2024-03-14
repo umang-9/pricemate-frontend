@@ -340,6 +340,9 @@ body .badge.bg-primary {
     font-weight: 600;
     color: var(--secondaryColor);
 }
+.form-control[aria-invalid="true"] {
+    border-color: #ff0000;
+}
 /* Login page css end */
 
 
