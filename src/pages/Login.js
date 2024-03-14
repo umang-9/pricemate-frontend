@@ -51,10 +51,14 @@ function Login() {
 		<main>
 			<section className='login-section'>
 				<Container>
-					<h2 className='text-center'>Login</h2>
-					<Row>
+					
+					<Row className='justify-content-center'>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit(onSubmit)}>
+							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+								<div className='text-center'>
+									<h2>Login</h2>
+									<p>Welcome back! Please sign in to your account.</p>
+								</div>
 								{/* Non field errors */}
 								{nonFieldErrors.map((error) => {
 									return (

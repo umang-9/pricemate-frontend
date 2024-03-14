@@ -29,10 +29,13 @@ function Signup() {
 		<main>
 			<section className='signup-section'>
 				<Container>
-					<h2>Signup</h2>
-					<Row>
+					<Row className='justify-content-center'>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit(onSubmit)}>
+							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+								<div className='text-center'>
+									<h2>Signup</h2>
+									<p>Create your account to get started!</p>
+								</div>
 								<Form.Group className='mb-3' controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
