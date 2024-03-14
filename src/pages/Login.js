@@ -15,7 +15,7 @@ function Login() {
 	console.log(nonFieldErrors);
 	const navigate = useNavigate();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	console.log("isLoggedIn: " +isLoggedIn);
+	console.log("isLoggedIn: " + isLoggedIn);
 
 	const {
 		register,
@@ -25,26 +25,26 @@ function Login() {
 
 	const onSubmit = async (inputData) => {
 		try {
-            const response = await axios.post('http://localhost:8000/login/', inputData, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                },
-            });
-            if (response.data && response.data.token) {
-                localStorage.setItem('token', response.data.token);
+			const response = await axios.post('http://localhost:8000/login/', inputData, {
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				},
+			});
+			if (response.data && response.data.token) {
+				localStorage.setItem('token', response.data.token);
 
 				// Set isLoggedIn to true after successful login
-                setIsLoggedIn(true);
+				setIsLoggedIn(true);
 
-                // then redirect to other page
-                navigate('/'); // Redirect to the home page
-            }
-        } catch (error) {
-            console.error(error);
-            if (error.response && error.response.data.non_field_errors) {
-                setNonFieldErrors(error.response.data.non_field_errors);
-            }
-        }
+				// then redirect to other page
+				navigate('/'); // Redirect to the home page
+			}
+		} catch (error) {
+			console.error(error);
+			if (error.response && error.response.data.non_field_errors) {
+				setNonFieldErrors(error.response.data.non_field_errors);
+			}
+		}
 	};
 
 	return (
@@ -115,11 +115,12 @@ function Login() {
 										type='checkbox'
 										label='Remember me'
 									/>
+									<a className='mb-3' href='/forgot-password'>Forgot password?</a>
 								</Form.Group>
 
 								{/* Login button */}
 								<Button variant='primary' type='submit'>
-									Logn
+									Login
 								</Button>
 							</Form>
 						</Col>
