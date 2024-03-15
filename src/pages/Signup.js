@@ -103,7 +103,7 @@ function Signup() {
 										type='email'
 										placeholder='Enter email'
 										{...register('email', {
-											required: true,
+											required: 'Email is required',
 											pattern: {
 												value: /^[\w.-]+@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z]{2,}$/,
 												message: 'Not a valid email'
@@ -115,12 +115,11 @@ function Signup() {
 												: 'false'
 										}
 									/>
-									{errors.email?.type ===
-										'required' && (
-											<Form.Text className='text-danger'>
-												Email is required
-											</Form.Text>
-										)
+									{errors.email && (
+										<Form.Text className='text-danger'>
+											{errors.email.message}
+										</Form.Text>
+									)
 									}
 								</Form.Group>
 
