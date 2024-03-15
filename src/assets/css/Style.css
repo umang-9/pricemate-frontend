@@ -156,6 +156,19 @@ a:active {
     text-align: center;
     color: var(--lightColor);
 }
+.foot-box .nav {
+    display: flex;
+    flex-direction: column;
+}
+.foot-box a.nav-link {
+    color: var(--secondaryColor);
+    padding: 0;
+    font-weight: 600;
+}
+.foot-box a.nav-link:hover,
+.foot-box a.nav-link.active {
+    color: var(--primaryColor);
+}
 .footer-bottom a {
     color: var(--lightColor);
 }
@@ -311,6 +324,26 @@ body .badge.bg-primary {
     object-fit: cover;
 }
 /* Landing page css end */
+
+/* Login page css start */
+.form-with-bg {
+    border: 3px solid var(--primaryColor);
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+.form-control {
+    background-color: #f7f7f7;
+    border: 1px solid var(--secondaryColor);
+}
+.form-label {
+    font-weight: 600;
+    color: var(--secondaryColor);
+}
+.form-control[aria-invalid="true"] {
+    border-color: #ff0000;
+}
+/* Login page css end */
 
 
 /* 

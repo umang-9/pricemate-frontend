@@ -29,10 +29,13 @@ function Signup() {
 		<main>
 			<section className='signup-section'>
 				<Container>
-					<h2>Signup</h2>
-					<Row>
+					<Row className='justify-content-center'>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit(onSubmit)}>
+							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+								<div className='text-center'>
+									<h2>Signup</h2>
+									<p>Create your account to get started!</p>
+								</div>
 								<Form.Group className='mb-3' controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
@@ -54,7 +57,7 @@ function Signup() {
 									{errors.first_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
-												Firstname is required
+												First name is required
 											</Form.Text>
 										)
 									}
@@ -81,7 +84,7 @@ function Signup() {
 									{errors.last_name?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
-												lastName is required
+												Last name is required
 											</Form.Text>
 										)
 									}
@@ -108,7 +111,7 @@ function Signup() {
 									{errors.email?.type ===
 										'required' && (
 											<Form.Text className='text-danger'>
-												email is required
+												Email is required
 											</Form.Text>
 										)
 									}
@@ -134,7 +137,7 @@ function Signup() {
 									/>
 									{errors.password && (
 										<Form.Text className='text-danger'>
-											{errors.password.message}
+											Password is required
 										</Form.Text>
 									)}
 								</Form.Group>

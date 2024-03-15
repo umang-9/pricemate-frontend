@@ -57,10 +57,14 @@ function Login() {
 		<main>
 			<section className='login-section'>
 				<Container>
-					<h2 className='text-center'>Login</h2>
-					<Row>
+
+					<Row className='justify-content-center'>
 						<Col md={6}>
-							<Form onSubmit={handleSubmit(onSubmit)}>
+							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+								<div className='text-center'>
+									<h2>Login</h2>
+									<p>Welcome back! Please sign in to your account.</p>
+								</div>
 								{/* Non field errors */}
 								{nonFieldErrors.map((error) => {
 									return (
@@ -112,19 +116,25 @@ function Login() {
 								</Form.Group>
 
 								<Form.Group
-									className='mb-3'
+									className='mb-3 text-end'
 									controlId='remeberMeCheckbox'>
-									<Form.Check
+									{/* <Form.Check
 										type='checkbox'
 										label='Remember me'
-									/>
-									<a className='mb-3' href='/forgot-password'>Forgot password?</a>
+									/> */}
+									{/* <a className='mb-3' href='/forgot-password'>Forgot password?</a> */}
+									<Link to={Links.forgotPassword}>Forgot password?</Link>
 								</Form.Group>
 
 								{/* Login button */}
 								<Button variant='primary' type='submit'>
 									Login
 								</Button>
+
+								<p className='mt-2'>
+									Not a member? <Link to={Links.signUp}>Register Now</Link>
+								</p>
+
 							</Form>
 						</Col>
 					</Row>

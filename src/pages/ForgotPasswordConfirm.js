@@ -51,10 +51,12 @@ function Forgot_Password_Confirm() {
         <main>
             <section className='pt-5 pb-5'>
                 <Container>
-                    <h2 className='text-center'>Create a new password</h2>
-                    <Row>
+                    <Row className='justify-content-center'>
                         <Col md={6}>
-                            <Form onSubmit={handleSubmit(onSubmit)}>
+                            <Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+                                <div className='text-center'>
+									<h2>Create a new password</h2>
+								</div>
                                 {/* Non field errors */}
                                 {nonFieldErrors.map((error) => {
                                     return (
