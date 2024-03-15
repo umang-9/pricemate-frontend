@@ -12,7 +12,7 @@ import axios from 'axios';
 
 function Forgot() {
     const [nonFieldErrors, setNonFieldErrors] = useState([]);
-    console.log(nonFieldErrors);
+    const [isEmailSent, setIsEmailSent] = useState(false);
 
     const {
         register,
@@ -30,6 +30,7 @@ function Forgot() {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 },
             });
+            setIsEmailSent(true);
 
         } catch (error) {
             console.error(error);
@@ -79,8 +80,15 @@ function Forgot() {
 
                                 {/* Forgot-Password button */}
                                 <Button variant='primary' type='submit'>
-                                    Forgot Password
+                                    Send
                                 </Button>
+
+                                {/* Display message onclick*/}
+                                {
+                                    isEmailSent && (
+                                        <p style={{ color: 'green' }}>We have sent you an email.</p>
+                                    )
+                                }
                             </Form>
                         </Col>
                     </Row>

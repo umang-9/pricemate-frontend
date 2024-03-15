@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,18 +25,18 @@ function Forgot_Password_Confirm() {
         handleSubmit,
         watch
     } = useForm();
-    const password = watch(["password", ""]); //watch both
+
+    const password = watch("password"); // Watch the password field
 
     const onSubmit = async (inputData) => {
-        inputData = { ...inputData, token }  //add the token
-        // console.log("submitting Data" + inputData);
+        inputData = { ...inputData, token }  // Add the token
         try {
             const response = await axios.post('http://localhost:8000/forgot-password/confirm/', inputData);
             if (response.status === 200) {
                 navigate('/login'); // Redirect to the login page
 
             } else {
-                console.error('Pasword not updated');
+                console.error('Password not updated');
             }
 
 
@@ -64,8 +64,6 @@ function Forgot_Password_Confirm() {
                                     );
                                 })}
 
-                                {/* Token */}
-                                {/* <input type='hidden' {...register('token')} value={token} /> */}
                                 {/* Password */}
                                 <Form.Group className='mb-3' controlId='password'>
                                     <Form.Label>Password</Form.Label>
@@ -76,7 +74,7 @@ function Forgot_Password_Confirm() {
                                             required: true,
                                             pattern: {
                                                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                                                message: 'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.'
+                                                message: 'Password must contain at least one uppercase, one lowercase, one number, and one special character and be at least 8 characters long.'
                                             }
                                         })}
                                         aria-invalid={
@@ -92,6 +90,7 @@ function Forgot_Password_Confirm() {
                                     )}
                                 </Form.Group>
 
+                                {/* Confirm Password */}
                                 <Form.Group
                                     className='mb-3'
                                     controlId='confirmPassword'>
@@ -101,20 +100,20 @@ function Forgot_Password_Confirm() {
                                         placeholder='Confirm Password'
                                         {...register('confirmPassword', {
                                             required: 'Confirm password is required',
-                                            validate: value => value === password || 'Password do not match'
+                                            validate: value => value === password || 'Passwords do not match'
                                         })}
                                         aria-invalid={
                                             errors.confirmPassword ? 'true' : 'false'
                                         }
                                     />
-                                    {errors.password && (
+                                    {errors.confirmPassword && (
                                         <Form.Text className='text-danger'>
-                                            {errors.password.message}
+                                            {errors.confirmPassword.message}
                                         </Form.Text>
                                     )}
                                 </Form.Group>
 
-                                {/* Forgot-Password button */}
+                                {/* Submit button */}
                                 <Button variant='primary' type='submit'>
                                     Submit
                                 </Button>
