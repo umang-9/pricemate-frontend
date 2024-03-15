@@ -10,17 +10,26 @@ import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
 
 function Signup() {
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 	const navigate = useNavigate();
 	const [successMessage, setSuccessMessage] = useState('');
 
 	const onSubmit = async (data) => {
 		try {
-			const response = await axios.post('http://localhost:8000/signup/', data);
-			setSuccessMessage('Signup successful! You will be redirected to the login page.');
-            setTimeout(() => {
-                navigate('/login');
-            }, 3000);
+			const response = await axios.post(
+				'http://localhost:8000/signup/',
+				data,
+			);
+			setSuccessMessage(
+				'Signup successful! You will be redirected to the login page.',
+			);
+			setTimeout(() => {
+				navigate('/login');
+			}, 3000);
 		} catch (error) {
 			console.error('Error:', error);
 			// Handle registration failure
@@ -33,17 +42,23 @@ function Signup() {
 				<Container>
 					<Row className='justify-content-center'>
 						<Col md={6}>
-							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
+							<Form
+								className='form-with-bg'
+								onSubmit={handleSubmit(onSubmit)}>
 								<div className='text-center'>
 									<h2>Signup</h2>
 									<p>Create your account to get started!</p>
 								</div>
 								{successMessage && (
-                                    <div className="alert alert-success" role="alert">
-                                        {successMessage}
-                                    </div>
-                                )}
-								<Form.Group className='mb-3' controlId='first_name'>
+									<div
+										className='alert alert-success'
+										role='alert'>
+										{successMessage}
+									</div>
+								)}
+								<Form.Group
+									className='mb-3'
+									controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
 										type='text'
@@ -52,25 +67,24 @@ function Signup() {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]{2,50}$/,
-												message: 'Name must be 2  to 50 characters long and contain only letters.'
-											}
+												message:
+													'Name must be 2  to 50 characters long and contain only letters.',
+											},
 										})}
 										aria-invalid={
-											errors.first_name
-												? 'true'
-												: 'false'
+											errors.first_name ? 'true' : 'false'
 										}
 									/>
-									{errors.first_name?.type ===
-										'required' && (
-											<Form.Text className='text-danger'>
-												First name is required
-											</Form.Text>
-										)
-									}
+									{errors.first_name?.type === 'required' && (
+										<Form.Text className='text-danger'>
+											First name is required
+										</Form.Text>
+									)}
 								</Form.Group>
 
-								<Form.Group className='mb-3' controlId='last_name'>
+								<Form.Group
+									className='mb-3'
+									controlId='last_name'>
 									<Form.Label>Last Name</Form.Label>
 									<Form.Control
 										type='text'
@@ -79,22 +93,19 @@ function Signup() {
 											required: true,
 											pattern: {
 												value: /^[a-zA-Z]+(?:['-][a-zA-Z]+)*$/,
-												message: 'Only allowed characters'
-											}
+												message:
+													'Only allowed characters',
+											},
 										})}
 										aria-invalid={
-											errors.last_name
-												? 'true'
-												: 'false'
+											errors.last_name ? 'true' : 'false'
 										}
 									/>
-									{errors.last_name?.type ===
-										'required' && (
-											<Form.Text className='text-danger'>
-												Last name is required
-											</Form.Text>
-										)
-									}
+									{errors.last_name?.type === 'required' && (
+										<Form.Text className='text-danger'>
+											Last name is required
+										</Form.Text>
+									)}
 								</Form.Group>
 
 								<Form.Group className='mb-3' controlId='email'>
@@ -106,25 +117,23 @@ function Signup() {
 											required: true,
 											pattern: {
 												value: /^[\w.-]+@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z]{2,}$/,
-												message: 'Not a valid email'
-											}
+												message: 'Not a valid email',
+											},
 										})}
 										aria-invalid={
-											errors.email
-												? 'true'
-												: 'false'
+											errors.email ? 'true' : 'false'
 										}
 									/>
-									{errors.email?.type ===
-										'required' && (
-											<Form.Text className='text-danger'>
-												Email is required
-											</Form.Text>
-										)
-									}
+									{errors.email?.type === 'required' && (
+										<Form.Text className='text-danger'>
+											Email is required
+										</Form.Text>
+									)}
 								</Form.Group>
 
-								<Form.Group className='mb-3' controlId='password'>
+								<Form.Group
+									className='mb-3'
+									controlId='password'>
 									<Form.Label>Password</Form.Label>
 									<Form.Control
 										type='password'
@@ -133,16 +142,16 @@ function Signup() {
 											required: true,
 											pattern: {
 												value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-												message: 'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.'
-											}
+												message:
+													'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.',
+											},
 										})}
 										aria-invalid={
-											errors.password
-												? 'true'
-												: 'false'
+											errors.password ? 'true' : 'false'
 										}
 									/>
-									{errors.password && (
+
+									{errors.password?.type === 'required' && (
 										<Form.Text className='text-danger'>
 											Password is required
 										</Form.Text>
