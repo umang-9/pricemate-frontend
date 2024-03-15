@@ -43,6 +43,12 @@ function Footer() {
 										</LinkContainer>
 									)}
 
+									{access_token && (
+										<LinkContainer to={Links.products}>
+											<Nav.Link>Products</Nav.Link>
+										</LinkContainer>
+									)}
+
 									{!access_token && (
 										<LinkContainer to={Links.login}>
 											<Nav.Link>Login</Nav.Link>

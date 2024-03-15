@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -12,13 +12,15 @@ import axios from 'axios';
 function Signup() {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const navigate = useNavigate();
+	const [successMessage, setSuccessMessage] = useState('');
 
 	const onSubmit = async (data) => {
 		try {
 			const response = await axios.post('http://localhost:8000/signup/', data);
-			console.log(response.data);
-			// Handle successful registration
-			navigate('/login');
+			setSuccessMessage('Signup successful! You will be redirected to the login page.');
+            setTimeout(() => {
+                navigate('/login');
+            }, 3000);
 		} catch (error) {
 			console.error('Error:', error);
 			// Handle registration failure
@@ -36,6 +38,11 @@ function Signup() {
 									<h2>Signup</h2>
 									<p>Create your account to get started!</p>
 								</div>
+								{successMessage && (
+                                    <div className="alert alert-success" role="alert">
+                                        {successMessage}
+                                    </div>
+                                )}
 								<Form.Group className='mb-3' controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control

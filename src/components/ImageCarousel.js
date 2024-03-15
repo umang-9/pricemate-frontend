@@ -36,7 +36,7 @@ function ImageCarousel() {
                             </div>
                             <h3>{item.title}</h3>
                             <p>{item.content}</p>
-                            <Link className="btn btn-primary" to={Links.indexURL}> 
+                            <Link className="btn btn-primary" to={Links.products}> 
                                 Price Match Now
                             </Link>
                         </Carousel.Caption>

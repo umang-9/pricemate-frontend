@@ -14,7 +14,7 @@ function Bannner({ title, text, img, isReverse }) {
             <div className="text">
               <h3>{title}</h3>
               <p>{text}</p>
-              <Link className="btn btn-primary" onClick={() => window.scrollTo(0, 0)} to={Links.indexURL}>
+              <Link className="btn btn-primary" onClick={() => window.scrollTo(0, 0)} to={Links.products}>
                 Get Started
               </Link>
             </div>

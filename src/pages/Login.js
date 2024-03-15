@@ -15,10 +15,10 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
 	const [nonFieldErrors, setNonFieldErrors] = useState([]);
-	console.log(nonFieldErrors);
+	// console.log(nonFieldErrors);
 	const navigate = useNavigate();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	console.log("isLoggedIn: " + isLoggedIn);
+	// console.log("isLoggedIn: " + isLoggedIn);
 
 	const {
 		register,
@@ -58,7 +58,7 @@ function Login() {
 					<Row className='justify-content-center'>
 						<Col md={6}>
 							<Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
-								<div className='text-center'>
+								<div className='text-center mb-3'>
 									<h2>Login</h2>
 									<p>Welcome back! Please sign in to your account.</p>
 								</div>
@@ -127,7 +127,7 @@ function Login() {
 									Login
 								</Button>
 								
-								<p className='mt-2'>
+								<p className='register-link mt-2'>
 									Not a member? <Link to={Links.signUp}>Register Now</Link>
 								</p>
 

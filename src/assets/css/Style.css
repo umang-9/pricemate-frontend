@@ -343,7 +343,30 @@ body .badge.bg-primary {
 .form-control[aria-invalid="true"] {
     border-color: #ff0000;
 }
+.register-link a {
+    font-weight: 600;
+}
 /* Login page css end */
+
+/* Product page css start */
+.product {
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 15px;
+    border-radius: 10px;
+    height: 100%;
+}
+.product-header {
+    display: block;
+    text-align: center;
+    height: 300px;
+    overflow: hidden;
+    padding: 15px 0;
+}
+.product-platform {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+/* Product page css end */
 
 
 /* 

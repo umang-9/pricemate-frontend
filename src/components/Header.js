@@ -49,8 +49,14 @@ function Header() {
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='ms-auto'>
 						{access_token && (
-                            <LinkContainer to='/'>
+                            <LinkContainer to={Links.indexURL}>
                                 <Nav.Link>Home</Nav.Link>
+                            </LinkContainer>
+                        )}
+
+						{access_token && (
+                            <LinkContainer to={Links.products}>
+                                <Nav.Link>Products</Nav.Link>
                             </LinkContainer>
                         )}
 

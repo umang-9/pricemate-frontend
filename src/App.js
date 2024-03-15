@@ -1,5 +1,4 @@
 import {
-	Link,
 	Route,
 	RouterProvider,
 	createBrowserRouter,
@@ -14,14 +13,17 @@ import Forgot from './pages/Forgot';
 import ForgotPasswordConfirm from './pages/ForgotPasswordConfirm';
 import PageNotFound from './pages/PageNotFound';
 import RootLayout from './layouts/RootLayout';
-
+import Products from './pages/Products';
+import ProductItem from './pages/ProductItem';
 
 export const Links = {
 	indexURL: '/',
 	login: '/login',
 	signUp: '/signup',
-	forgotPassword: '/forgot-password/',
-	resetPassword: '/forgot-password/confirm/'
+	forgotPassword: '/forgot-password',
+	resetPassword: '/forgot-password/confirm',
+	products: '/products',
+	productItem: '/products/detail/:id'
 }
 
 
@@ -35,6 +37,8 @@ const router = createBrowserRouter(
 			<Route path={Links.resetPassword}
 				element={<ForgotPasswordConfirm />} />
 			<Route path='*' element={<PageNotFound />} />
+			<Route path={Links.products} element={<Products />} />
+			<Route path={Links.productItem} element={<ProductItem />} />
 		</Route>,
 	),
 );
