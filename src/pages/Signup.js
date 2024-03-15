@@ -18,9 +18,9 @@ function Signup() {
 		try {
 			const response = await axios.post('http://localhost:8000/signup/', data);
 			setSuccessMessage('Signup successful! You will be redirected to the login page.');
-            setTimeout(() => {
-                navigate('/login');
-            }, 3000);
+			setTimeout(() => {
+				navigate('/login');
+			}, 3000);
 		} catch (error) {
 			console.error('Error:', error);
 			// Handle registration failure
@@ -39,10 +39,10 @@ function Signup() {
 									<p>Create your account to get started!</p>
 								</div>
 								{successMessage && (
-                                    <div className="alert alert-success" role="alert">
-                                        {successMessage}
-                                    </div>
-                                )}
+									<div className="alert alert-success" role="alert">
+										{successMessage}
+									</div>
+								)}
 								<Form.Group className='mb-3' controlId='first_name'>
 									<Form.Label>First Name</Form.Label>
 									<Form.Control
@@ -130,11 +130,15 @@ function Signup() {
 										type='password'
 										placeholder='Enter password'
 										{...register('password', {
-											required: true,
+											required: 'Password is required',
+											minLength: {
+												value: 8,
+												message: 'Password must be at least 8 characters long',
+											},
 											pattern: {
 												value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-												message: 'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.'
-											}
+												message: 'Password must contain at least one uppercase, one lowercase, one number, and one special character',
+											},
 										})}
 										aria-invalid={
 											errors.password
@@ -144,7 +148,7 @@ function Signup() {
 									/>
 									{errors.password && (
 										<Form.Text className='text-danger'>
-											Password is required
+											{errors.password.message}
 										</Form.Text>
 									)}
 								</Form.Group>
