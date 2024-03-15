@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Form, InputGroup } from 'react-bootstrap';
 
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,12 @@ function Login() {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
+
+	const [showPassword, setShowPassword] = useState(false);
+
+	const togglePasswordVisibility = () => {
+		setShowPassword(!showPassword);
+	};
 
 	const onSubmit = async (inputData) => {
 		try {
@@ -83,20 +89,21 @@ function Login() {
 									)}
 								</Form.Group>
 
-								<Form.Group
-									className='mb-3'
-									controlId='formBasicPassword'>
+								<Form.Group className='mb-3 relative' controlId='formBasicPassword'>
 									<Form.Label>Password</Form.Label>
-									<Form.Control
-										type='password'
-										placeholder='Password'
-										{...register('password', {
-											required: 'Password is required',
-										})}
-										aria-invalid={
-											errors.password ? 'true' : 'false'
-										}
-									/>
+									<InputGroup>
+										<Form.Control
+											type={showPassword ? 'text' : 'password'}
+											placeholder='Password'
+											{...register('password', {
+												required: 'Password is required',
+											})}
+											aria-invalid={errors.password ? 'true' : 'false'}
+										/>
+										<InputGroup.Text onClick={togglePasswordVisibility}>
+											{showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+										</InputGroup.Text>
+									</InputGroup>
 									{errors.password && (
 										<Form.Text className='text-danger'>
 											{errors.password.message}
