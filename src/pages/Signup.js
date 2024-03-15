@@ -114,7 +114,7 @@ function Signup() {
 										type='email'
 										placeholder='Enter email'
 										{...register('email', {
-											required: true,
+											required: 'Email is required',
 											pattern: {
 												value: /^[\w.-]+@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*\.[a-zA-Z]{2,}$/,
 												message: 'Not a valid email',
@@ -124,9 +124,9 @@ function Signup() {
 											errors.email ? 'true' : 'false'
 										}
 									/>
-									{errors.email?.type === 'required' && (
+									{errors.email && (
 										<Form.Text className='text-danger'>
-											Email is required
+											{errors.email.message}
 										</Form.Text>
 									)}
 								</Form.Group>
@@ -139,11 +139,16 @@ function Signup() {
 										type='password'
 										placeholder='Enter password'
 										{...register('password', {
-											required: true,
+											required: 'Password is required',
+											minLength: {
+												value: 8,
+												message:
+													'Password must be at least 8 characters long',
+											},
 											pattern: {
 												value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 												message:
-													'Password must conatin atleast one uppercase, one  lowercase, one number and one special character and be atleast 8 characters long.',
+													'Password must contain at least one uppercase, one lowercase, one number, and one special character',
 											},
 										})}
 										aria-invalid={
@@ -153,7 +158,7 @@ function Signup() {
 
 									{errors.password?.type === 'required' && (
 										<Form.Text className='text-danger'>
-											Password is required
+											{errors.password.message}
 										</Form.Text>
 									)}
 								</Form.Group>
