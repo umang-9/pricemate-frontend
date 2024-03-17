@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import { Button } from 'react-bootstrap';
 
 function ProductItem() {
 	const { id } = useParams();
@@ -24,15 +25,20 @@ function ProductItem() {
 		};
 		fetchProductDetails();
 	}, [id]);
-
+	const capitalLetter = (platform) => {
+		return platform.charAt(0).toUpperCase() + platform.slice(1);
+	}
 	return (
 		<Container>
 			{loading && <p>Loading...</p>}
 			{error && <p>Error: {error}</p>}
 			{product && (
 				<div>
+
 					<h2>{product.title}</h2>
-					<p>{product.platform}</p>
+					<p>
+						<a class="btn btn-primary btn-sm" href={product.link}>{capitalLetter(product.platform)}</a>
+					</p>
 					<img src={product.image} alt={product.title} />
 					<div dangerouslySetInnerHTML={{ __html: product.about }} />
 				</div>

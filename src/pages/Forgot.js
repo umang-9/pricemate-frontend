@@ -48,8 +48,8 @@ function Forgot() {
                         <Col md={6}>
                             <Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
                                 <div className='text-center'>
-									<h2>Forgot Password</h2>
-								</div>
+                                    <h2>Forgot Password</h2>
+                                </div>
                                 {/* Non field errors */}
                                 {nonFieldErrors.map((error) => {
                                     return (
