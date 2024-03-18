@@ -31,7 +31,7 @@ function Header() {
 						<LinkContainer to='/'>
 							<NavLink>
 								<Image
-									src='assets/images/logo.png'
+									src='/assets/images/logo.png'
 									alt='Price Match'
 									fluid
 								/>
