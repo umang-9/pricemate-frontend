@@ -33,9 +33,10 @@ function Forgot() {
             setIsEmailSent(true);
 
         } catch (error) {
-            console.error(error);
-            if (error.response && error.response.data.non_field_errors) {
-                setNonFieldErrors(error.response.data.non_field_errors);
+            console.error('Error:', error);
+    console.error('Error response inputData:', error.response.inputData);
+            if (error.response && error.response.inputData.non_field_errors) {
+                setNonFieldErrors(error.response.inputData.non_field_errors);
             }
         }
     };
@@ -86,7 +87,7 @@ function Forgot() {
                                 {/* Display message onclick*/}
                                 {
                                     isEmailSent && (
-                                        <p style={{ color: 'green' }}>We have sent you an email.</p>
+                                        <p style={{ color: 'green' }}>We have sent you an email with the link to reset your password. Please check your inbox and click on the link to complete the password reset process.</p>
                                     )
                                 }
                             </Form>

@@ -17,6 +17,7 @@ function Signup() {
 	} = useForm();
 	const navigate = useNavigate();
 	const [successMessage, setSuccessMessage] = useState('');
+	const [nonFieldErrors, setNonFieldErrors] = useState([]);
 
 	const onSubmit = async (data) => {
 		try {
@@ -32,6 +33,10 @@ function Signup() {
 			}, 3000);
 		} catch (error) {
 			console.error('Error:', error);
+    		console.log('Error response data:', error.response.data);
+			if (error.response && error.response.data.email) {
+                setNonFieldErrors(error.response.data.email);
+            }
 			// Handle registration failure
 		}
 	};
@@ -56,6 +61,12 @@ function Signup() {
 										{successMessage}
 									</div>
 								)}
+								{/* Non field errors */}
+								{nonFieldErrors.map((error) => {
+									return (
+										<p className="mb-0" style={{ color: 'red' }}>{error}</p>
+									);
+								})}
 								<Form.Group
 									className='mb-3'
 									controlId='first_name'>
