@@ -26,7 +26,7 @@ function ProductRequest() {
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 		};
 		const token = localStorage.getItem('token');
-		if (token !== null) {
+		if (token != null) {
 			headers['Authorization'] = `Token ${token}`;
 		}
 		try {
