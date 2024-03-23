@@ -13,6 +13,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Forgot_Password_Confirm() {
     const [nonFieldErrors, setNonFieldErrors] = useState([]);
+    const [successMessage, setSuccessMessage] = useState('');
     console.log(nonFieldErrors);
     const navigate = useNavigate();
     let [searchParams] = useSearchParams();
@@ -33,7 +34,10 @@ function Forgot_Password_Confirm() {
         try {
             const response = await axios.post('http://localhost:8000/forgot-password/confirm/', inputData);
             if (response.status === 200) {
-                navigate('/login'); // Redirect to the login page
+                setSuccessMessage('Password changed successfully! You will be redirected to the login page.');
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
 
             } else {
                 console.error('Password not updated');
@@ -55,8 +59,14 @@ function Forgot_Password_Confirm() {
                         <Col md={6}>
                             <Form className="form-with-bg" onSubmit={handleSubmit(onSubmit)}>
                                 <div className='text-center'>
-									<h2>Create a new password</h2>
-								</div>
+                                    <h2>Create a new password</h2>
+                                </div>
+                                {successMessage && (
+                                    <div className="alert alert-success" role="alert">
+                                        {successMessage}
+                                    </div>
+                                )}
+
                                 {/* Non field errors */}
                                 {nonFieldErrors.map((error) => {
                                     return (
