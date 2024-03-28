@@ -23,7 +23,7 @@ function Footer() {
 
 						<Col sm={12} md={6} lg={3}>
 							<div className="foot-box">
-								<Image src="assets/images/logo.png" alt="Price Match" fluid />
+								<Image src="/assets/images/logo.png" alt="Price Match" fluid />
 								<h5 className='mt-3'>Our address:</h5>
 								<address>
 									<p>403-7 Erie Avnue</p>

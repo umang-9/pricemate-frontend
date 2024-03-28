@@ -6,18 +6,18 @@ import { Link } from 'react-router-dom';
 const carouselItems = [
     {
         image: 'assets/images/banner1.jpg',
-        title: 'Price Mate:',
-        content: 'Bridging the Gap between Budget and Bargains!'
+        title: 'Price Mate',
+        content: 'Bridging the Gap between Budget and Bargains'
     },
     {
         image: 'assets/images/banner2.jpg',
-        title: 'Say Goodbye to Overpaying!',
-        content: 'Price Mate Finds the Best Deals for You.'
+        title: 'Say Goodbye to Overpaying',
+        content: 'Price Mate Finds the Best Deals for You'
     },
     {
         image: 'assets/images/banner3.jpg',
         title: 'Match. Save. Smile. Repeat.',
-        content: 'Experience the Price Mate Advantage!'
+        content: 'Experience the Price Mate Advantage'
     }
 ]
 
@@ -37,7 +37,7 @@ function ImageCarousel() {
                             <h3>{item.title}</h3>
                             <p>{item.content}</p>
                             <Link className="btn btn-primary" to={Links.products}> 
-                                Price Match Now
+                                Price Track Now
                             </Link>
                         </Carousel.Caption>
                     </Carousel.Item>

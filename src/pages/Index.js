@@ -11,7 +11,7 @@ function Index() {
 			<ImageCarousel />
 			<FeaturesSection />
 			<CTABanner
-				title="Take Control of Your Savings Today!"
+				title="Take Control of Your Savings Today"
 				text="Start saving more on your purchases with Price Match. Our powerful tool ensures you get the best deals available, every time."
 				img="assets/images/cta-banner2.jpg"
 				isReverse={true}
