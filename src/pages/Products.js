@@ -7,10 +7,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Pagination from '@material-ui/lab/Pagination';
 
 export default function Products() {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5); // Display 5 products per page
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -27,7 +30,14 @@ export default function Products() {
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
+        setCurrentPage(1); // Reset current page when search query changes
     };
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (event, pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div>
@@ -49,7 +59,7 @@ export default function Products() {
                         </Col>
                     </Row>
                     <Row>
-                        {products
+                        {currentProducts
                             .filter((product) => {
                                 const productName = product.title && product.title.toLowerCase();
                                 const isMatching = !search || (productName && productName.includes(search.toLowerCase()));
@@ -76,13 +86,21 @@ export default function Products() {
                             ))
                         }
                     </Row>
-                    {search && products.filter((product) => {
+                    {search && currentProducts.filter((product) => {
                         const productName = product.title && product.title.toLowerCase();
                         const isMatching = !search || (productName && productName.includes(search.toLowerCase()));
                         return isMatching;
                     }).length === 0 && (
                             <div className="text-center">No Products Found.</div>
                         )}
+                    <Pagination
+                        count={Math.ceil(products.length / itemsPerPage)}
+                        page={currentPage}
+                        onChange={paginate}
+                        color="primary"
+                        background-color="#ff780a"
+                        style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+                    />
                 </Container>
             </section>
         </div>
