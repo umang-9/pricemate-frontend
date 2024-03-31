@@ -49,7 +49,7 @@ function ProductItem() {
 						</Col>
 						<Col md={6}>
 							<h2>{product.title}</h2>
-							<a className="btn btn-primary btn-sm" href={product.link}>
+							<a className="btn btn-primary btn-sm" href={product.link} target='_blank'>
 								{product.platform.charAt(0).toUpperCase() + product.platform.slice(1)}
 							</a>
 						</Col>

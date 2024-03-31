@@ -24,7 +24,7 @@ function Header() {
 	};
 
 	return (
-		<Navbar sticky='top' expand='lg' className='bg-body-tertiary'>
+		<Navbar sticky='top' expand='lg' className='header bg-body-tertiary'>
 			<Container>
 				<h1 className='main-logo'>
 					<Navbar.Brand>

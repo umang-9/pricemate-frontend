@@ -195,6 +195,15 @@
     .text-side {
         padding: 30px;
     }
+
+    .filter-section .navbar-toggler:before {
+        display: none;
+    }
+    .filter-section .navbar-toggler,
+    .filter-section .navbar-toggler span {
+        width: auto;
+        height: auto;
+    }
 }
 
 @media (max-width: 767px) {

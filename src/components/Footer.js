@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Footer() {
-
 	const access_token = localStorage.getItem('token');
 
   	return (
@@ -81,10 +80,10 @@ function Footer() {
 								<h5>CONNECT WITH US</h5>
 								<p>Stay connected with us on social media for updates, deals, and more:</p>
 								<div className="social-icons">
-									<a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a>
-									<a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
-									<a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
-									<a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a>
+									<a href="https://www.facebook.com/" target='_blank'><i className="fa fa-facebook" aria-hidden="true"></i></a>
+									<a href="https://www.twitter.com" target='_blank'><i className="fa fa-twitter" aria-hidden="true"></i></a>
+									<a href="https://www.linkedin.com" target='_blank'><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+									<a href="https://www.google.com" target='_blank'><i className="fa fa-google-plus" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</Col>

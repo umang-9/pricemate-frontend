@@ -7,6 +7,7 @@
     --lighBgColor: #eee;
     --primaryBgColor: rgba(255,120,10, 0.1);
     --secondaryBgColor: rgba(60,74,79,0.3);
+    --border-color: rgb(235, 235, 235);
     --duration: 1.5s;
     --ease: cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -350,21 +351,87 @@ body .badge.bg-primary {
 
 /* Product page css start */
 .product {
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    /* box-shadow: 0 0 5px rgba(0,0,0,0.5); */
     padding: 15px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     height: 100%;
+    border: 1px solid;
+    border-color: var(--border-color);
+    position: relative;
 }
 .product-header {
     display: block;
     text-align: center;
-    height: 300px;
+    height: 200px;
     overflow: hidden;
     padding: 15px 0;
 }
 .product-platform {
-    font-weight: 700;
     text-transform: capitalize;
+    font-size: 0.9rem;
+}
+.product-title {
+    word-wrap: break-word;
+    font-size: 0.9rem;
+}
+.product:before, .product:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    display: block;
+    z-index: 1;
+    background-color: var(--primaryColor);
+    transition: all ease .35s;
+    opacity: 0;
+}
+.product:before {
+    left: -1px;
+    bottom: -1px;
+    top: 100%;
+}
+.product:hover:before {
+    top: -1px;
+    opacity: 1;
+}
+.product:after {
+    right: -1px;
+    top: -1px;
+    bottom: 100%;
+}
+.product:hover:after {
+    bottom: -1px;
+    opacity: 1;
+}
+.product-line:before, .product-line:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    display: block;
+    z-index: 1;
+    background-color: var(--primaryColor);
+    transition: all ease .35s;
+    opacity: 0;
+}
+.product-line:before {
+    top: -1px;
+    left: -1px;
+    right: 100%;
+}
+.product-line:after {
+    bottom: -1px;
+    right: -1px;
+    left: 100%;
+}
+.product:hover .product-line:before {
+    right: 0;
+    opacity: 1;
+}
+.product:hover .product-line:after {
+    left: 0;
+    opacity: 1;
+}
+div#filterSection > * {
+    width: 100%;
 }
 /* Product page css end */
 
