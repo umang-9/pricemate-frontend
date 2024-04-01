@@ -4,31 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FilterSection(products) {
+function FilterSection({ products }) {
+
     const [filters, setFilters] = useState({
         platform: '',
         price: '',
     });
-
-    useEffect(() => {
-        // const uniquePlatforms = Array.from(new Set(products.map(product => product.platform)));
-        // if (uniquePlatforms.length > 0) {
-        //     setFilters(prevFilters => ({
-        //         ...prevFilters,
-        //         platform: uniquePlatforms[0]
-        //     }));
-        //     handleFilterChange({ ...filters, platform: uniquePlatforms[0] });
-        // }
-    }, [products, filters]);
-
-    // const handleInputChange = (e) => {
-    //     // const { name, value } = e.target;
-    //     // setFilters(prevFilters => ({
-    //     //     ...prevFilters,
-    //     //     [name]: value
-    //     // }));
-    //     // handleFilterChange({ ...filters, [name]: value });
-    // };
 
     return (
         <div class="filter-section-container row flex-lg-column">
@@ -72,7 +53,7 @@ function FilterSection(products) {
                                 as="select"
                                 name="platform"
                                 value={filters.platform}
-                                // onChange={handleInputChange}
+                                
                             >
                                 {products.map((product, index) => (
                                     <option key={index} value={product.platform}>
@@ -89,7 +70,7 @@ function FilterSection(products) {
                                 as="select"
                                 name="category"
                                 value={filters.price}
-                                // onChange={handleInputChange}
+                                
                             >
                                 <option value="">All</option>
                                 <option value="under20">$0 - $500</option>

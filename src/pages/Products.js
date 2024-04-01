@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Pagination from '@material-ui/lab/Pagination';
 import FilterSection from '../components/FilterSection';
 
 function Products() {
@@ -21,7 +20,7 @@ function Products() {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`http://localhost:8000/products/list/?page=${currentPage}`);
-                console.log("currentPage" + currentPage)
+                // console.log("currentPage" + currentPage);
                 setProducts(response.data.results);
                 setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setNextPage(response.data.next);
@@ -60,22 +59,44 @@ function Products() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+    // const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 
     const handleNextPage = () => {
         if (nextPage) {
             const page = nextPage.split("=")[1]; // Extract the page number from the URL
-            console.log("page" + page);
-            setCurrentPage(page);
+            // console.log("page" + page);
+            setCurrentPage(parseInt(page));
         }
     };
 
     const handlePrevPage = () => {
         if (prevPage) {
             const page = prevPage.split("=")[1]; // Extract the page number from the URL
-            setCurrentPage(page);
+            setCurrentPage(parseInt(page));
         }
     };
+
+    const renderPageNumbers = () => {
+        const pageNumbers = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbers.push(
+                <li className="page-item" key={i}>
+                    <a
+                        href="#"
+                        onClick={() => {
+                            setCurrentPage(i);
+                            window.scrollTo(0, 0);
+                        }}
+                        className={`page-link ${currentPage === i ? 'active' : ''}`}
+                    >
+                        {i}
+                    </a>
+                </li>
+            );
+        }
+        return pageNumbers;
+    };
+    
 
     return (
         <div>
@@ -84,7 +105,7 @@ function Products() {
                     <h2 className="text-center mb-5">Products</h2>
                     <div className="row">
                         <div className="col-lg-3 mb-5 mb-lg-0">
-                            {/* <FilterSection products={products}/> */}
+                            <FilterSection products={products} />
                         </div>
                         <div className="col-lg-9">
                             {/* Product Listing */}
@@ -122,10 +143,22 @@ function Products() {
                             )} */}
 
                             {/* Pagination */}
-                            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                                <button className="btn btn-primary btn-sm mt-3" onClick={handlePrevPage} disabled={!prevPage}>Previous</button>
-                                <button className="btn btn-primary btn-sm mt-3" onClick={handleNextPage} disabled={!nextPage}>Next</button>
-                            </div>
+                            <nav className="pagination-section" aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                        <a class="page-link" href="#" onClick={handlePrevPage} disabled={!prevPage} aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    {renderPageNumbers()}
+                                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                        <a class="page-link" href="#" onClick={handleNextPage} disabled={!nextPage} aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
                         </div>
                     </div>
                 </Container>

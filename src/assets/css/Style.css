@@ -472,6 +472,30 @@ body .badge.bg-primary {
 div#filterSection > * {
     width: 100%;
 }
+.pagination-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.page-link,
+.page-link:focus {
+    color: var(--primaryColor);
+    border: var(--bs-pagination-border-width) solid var(--primaryColor);
+    background-color: var(--lightColor);
+}
+.active>.page-link, 
+.page-link.active,
+.page-link:hover {
+    color: var(--lighBgColor);
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor);
+}
+.page-link:focus,
+.page-link:active {
+    box-shadow: none;
+    outline: none;
+}
 /* Product page css end */
 
 
