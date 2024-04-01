@@ -11,21 +11,28 @@ function Products() {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(5); // Display 5 products per page
+    const [itemsPerPage] = useState(12); // Display 12 products per page
     const [selectedFilters, setSelectedFilters] = useState({});
+    const [totalPages, setTotalPages] = useState(0);
+    const [nextPage, setNextPage] = useState(null);
+    const [prevPage, setPrevPage] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/products/list/');
-                setProducts(response.data);
+                const response = await axios.get(`http://localhost:8000/products/list/?page=${currentPage}`);
+                console.log("currentPage" + currentPage)
+                setProducts(response.data.results);
+                setTotalPages(Math.ceil(response.data.count / itemsPerPage));
+                setNextPage(response.data.next);
+                setPrevPage(response.data.previous);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
         };
 
         fetchProducts();
-    }, []);
+    }, [currentPage]);
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -54,9 +61,21 @@ function Products() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-    console.log("Current Product: " +currentProducts);
 
-    const paginate = (event, pageNumber) => setCurrentPage(pageNumber);
+    const handleNextPage = () => {
+        if (nextPage) {
+            const page = nextPage.split("=")[1]; // Extract the page number from the URL
+            console.log("page" + page);
+            setCurrentPage(page);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (prevPage) {
+            const page = prevPage.split("=")[1]; // Extract the page number from the URL
+            setCurrentPage(page);
+        }
+    };
 
     return (
         <div>
@@ -105,14 +124,10 @@ function Products() {
                             )}
 
                             {/* Pagination */}
-                            <Pagination
-                                count={Math.ceil(filteredProducts.length / itemsPerPage)}
-                                page={currentPage}
-                                onChange={paginate}
-                                color="primary"
-                                background-color="#3c4a4f"
-                                style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
-                            />
+                            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                                <button className="btn btn-primary btn-sm mt-3" onClick={handlePrevPage} disabled={!prevPage}>Previous</button>
+                                <button className="btn btn-primary btn-sm mt-3" onClick={handleNextPage} disabled={!nextPage}>Next</button>
+                            </div>
                         </div>
                     </div>
                 </Container>
