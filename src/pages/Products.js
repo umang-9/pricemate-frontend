@@ -15,12 +15,16 @@ function Products() {
     const [totalPages, setTotalPages] = useState(0);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
+    const [sortBy, setSortBy] = useState('');
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/products/list/?page=${currentPage}`);
-                // console.log("currentPage" + currentPage);
+                let url = `http://127.0.0.1:8000/products/list/?page=${currentPage}`;
+                if (sortBy) {
+                    url += `&sortby=${sortBy}`;
+                }
+                const response = await axios.get(url);
                 setProducts(response.data.results);
                 setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setNextPage(response.data.next);
@@ -31,7 +35,11 @@ function Products() {
         };
 
         fetchProducts();
-    }, [currentPage]);
+    }, [currentPage, sortBy]);
+
+    const handleSort = (value) => {
+        setSortBy(value);
+    }; 
 
     // const handleSearchChange = (e) => {
     //     setSearch(e.target.value);
@@ -105,7 +113,7 @@ function Products() {
                     <h2 className="text-center mb-5">Products</h2>
                     <div className="row">
                         <div className="col-lg-3 mb-5 mb-lg-0">
-                            <FilterSection products={products} />
+                            <FilterSection products={products} handleSort={handleSort}/>
                         </div>
                         <div className="col-lg-9">
                             {/* Product Listing */}
@@ -144,15 +152,15 @@ function Products() {
 
                             {/* Pagination */}
                             <nav className="pagination-section" aria-label="Page navigation example">
-                                <ul class="pagination">
+                                <ul className="pagination">
                                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                                        <a class="page-link" href="#" onClick={handlePrevPage} disabled={!prevPage} aria-label="Previous">
+                                        <a className="page-link" href="#" onClick={handlePrevPage} disabled={!prevPage} aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
                                     {renderPageNumbers()}
                                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                                        <a class="page-link" href="#" onClick={handleNextPage} disabled={!nextPage} aria-label="Next">
+                                        <a className="page-link" href="#" onClick={handleNextPage} disabled={!nextPage} aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>

@@ -4,22 +4,30 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FilterSection({ products }) {
+function FilterSection({ products, handleSort }) {
 
     const [filters, setFilters] = useState({
         platform: '',
         price: '',
     });
 
+    const [sortBy, setSortBy] = useState('');
+
+    const handleSortChange = (e) => {
+        const { value } = e.target;
+        setSortBy(value);
+        handleSort(value);
+    };
+
     return (
-        <div class="filter-section-container row flex-lg-column">
+        <div className="filter-section-container row flex-lg-column">
             
             <h4 className='fw-semibold mb-4 d-none d-lg-block col col-12'>Filters</h4>
 
             {/* Sort by filter */}
             <Form.Group className="mb-0 mb-lg-3 col-12 col-sm-6 col-lg-12 sort-by-select-group" controlId="sortFIlter">
                 <Form.Label>Sort By:</Form.Label>
-                <Form.Select aria-label="sort-filter">
+                <Form.Select aria-label="sort-filter" onChange={handleSortChange} value={sortBy}>
                     <option>Select</option>
                     <option value="1">Alphabetically, A-Z</option>
                     <option value="2">Alphabetically, Z-A</option>
@@ -35,7 +43,7 @@ function FilterSection({ products }) {
                     {/* Filter title and filter icon for mobile view */}
                     <Navbar.Toggle className="navbar-toggler" aria-controls="filterSection">
                         <span>Filter</span>
-                        <span class="navbar-toggler-icon"><i class="fa fa-sliders" aria-hidden="true"></i></span>
+                        <span className="navbar-toggler-icon"><i className="fa fa-sliders" aria-hidden="true"></i></span>
                     </Navbar.Toggle>
                     
                     {/* Filter menu */}
@@ -43,7 +51,7 @@ function FilterSection({ products }) {
 
                         {/* Filter menu close button for mobile */}
                         <Navbar.Toggle className="navbar-toggler navbar-toggler-close" aria-controls="filterSection">
-                            <span class="navbar-toggler-icon"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                            <span className="navbar-toggler-icon"><i className="fa fa-times-circle" aria-hidden="true"></i></span>
                         </Navbar.Toggle>
 
                         {/* Platform Filter */}
