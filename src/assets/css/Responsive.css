@@ -204,6 +204,78 @@
         width: auto;
         height: auto;
     }
+    .filter-section .navbar-toggler span {
+        position: relative;
+        top: auto;
+        left: auto;
+        background-color: transparent;
+        display: inline-block;
+    }
+    .filter-section .navbar-toggler {
+        background-color: transparent;
+        padding: 0;
+        font-size: 1.125rem;
+        color: var(--secondaryColor);
+        font-weight: 600;
+        z-index: auto;
+    }
+    .filter-section .navbar-toggler span.navbar-toggler-icon {
+        margin-left: 15px;
+        color: var(--primaryColor);
+    }
+    .filter-section .navbar-toggler:not(.collapsed) span:nth-child(1), 
+    .filter-section .navbar-toggler:not(.collapsed) span:nth-child(2) {
+        transform: none;
+        top: auto;
+        left: auto;
+    }
+    select#sortFIlter {
+        width: auto;
+    }
+    .sort-by-select-group {
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--border-color);
+        padding: 15px 0;
+        justify-content: center;
+    }
+    .sort-by-select-group .form-label {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+    .filter-section {
+        border-color: var(--border-color);
+        border-width: 1px 1px 1px 0;
+        border-style: solid;
+        padding: 15px 0;
+    }
+    .filter-section .navbar {
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    div#filterSection > * {
+        width: auto;
+    }
+    .filter-section .navbar-collapse {
+        padding: 0;
+        z-index: 1200;
+        background-color: #eee;
+        padding: 100px 30px 30px;
+        display: flex !important;
+    }
+    .filter-section .navbar-toggler-close {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+    .filter-section .navbar-toggler-close span.navbar-toggler-icon {
+        margin-left: auto;
+        font-size: 2rem;
+    }
+    div#filterSection > .filter-input {
+        width: 30vw;
+    }
 }
 
 @media (max-width: 767px) {
@@ -271,5 +343,21 @@
 
     .btn {
         padding: 8px 15px;
+    }
+
+    .search-form {
+        flex: 0 0 100%;
+        order: 3;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .filter-section {
+        border-width: 0 1px 1px 1px;
+    }
+
+    div#filterSection > .filter-input {
+        width: 70vw;
     }
 }

@@ -40,6 +40,18 @@ function Header() {
 					</Navbar.Brand>
 				</h1>
 
+				{/* Search form */}
+				<form class="search-form me-0 me-sm-3">
+					<div class="search-form-container bg-light rounded rounded-pill shadow-sm ">
+						<div class="input-group">
+							<input type="search" placeholder="What're you searching for?" aria-describedby="btnSearch" class="form-control border-0 bg-light" />
+							<div class="input-group-append">
+								<button id="btnSearch" type="submit" class="btn btn-sm btn-link text-primary"><i class="fa fa-search"></i></button>
+							</div>
+						</div>
+					</div>
+				</form>
+
 				<Navbar.Toggle aria-controls='basic-navbar-nav'>
 					<span></span>
 					<span></span>
@@ -49,8 +61,8 @@ function Header() {
 					<span></span>
 				</Navbar.Toggle>
 
-				<Navbar.Collapse id='basic-navbar-nav'>
-					<Nav className='ms-auto'>
+				<Navbar.Collapse className='' id='basic-navbar-nav'>
+					<Nav >
 						{access_token && (
 							<LinkContainer to={Links.indexURL}>
 								<Nav.Link>Home</Nav.Link>

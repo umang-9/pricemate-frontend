@@ -85,6 +85,9 @@ a:active {
     padding: 10px 35px;
     border-radius: 5px;
 }
+.btn.btn-sm {
+    padding: 10px 15px;
+}
 .btn:focus {
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -127,7 +130,7 @@ a:active {
 .main-logo,
 .navbar-brand {
     max-width: 90px;
-	margin: 0;
+	margin: 0 auto 0 0;
 }
 
 .navbar {
@@ -142,6 +145,38 @@ a:active {
 
 .navbar-nav .nav-link.active {
     font-weight: 600;
+}
+
+div#basic-navbar-nav {
+    flex-grow: unset;
+}
+
+.search-form .input-group {
+    min-width: 250px;
+}
+
+.search-form .input-group>.form-control {
+    font-size: 0.9rem;
+    padding: 0 0 0 15px;
+}
+
+.search-form .input-group>.form-control:focus,
+.search-form .input-group>.form-control:active {
+    outline: none;
+    box-shadow: none;
+}
+
+#btnSearch {
+    padding: 10px;
+}
+
+#btnSearch i {
+    color: var(--primaryColor);
+}
+
+.search-form-container {
+    border: 1px solid var(--primaryColor);
+    padding: 0 15px;
 }
 /* Header css end */
 
@@ -358,6 +393,9 @@ body .badge.bg-primary {
     border: 1px solid;
     border-color: var(--border-color);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .product-header {
     display: block;
@@ -365,6 +403,7 @@ body .badge.bg-primary {
     height: 200px;
     overflow: hidden;
     padding: 15px 0;
+    width: 100%;
 }
 .product-platform {
     text-transform: capitalize;
