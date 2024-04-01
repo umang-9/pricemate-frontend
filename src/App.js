@@ -23,7 +23,7 @@ export const Links = {
 	signUp: '/signup',
 	forgotPassword: '/forgot-password',
 	resetPassword: '/forgot-password/confirm',
-	products: '/products',
+	products: '/products/list/',
 	productItem: '/products/detail/:id',
 	productRequest: 'products/request',
 };
