@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,18 +17,23 @@ function Products() {
     const [prevPage, setPrevPage] = useState(null);
     const [sortBy, setSortBy] = useState('');
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 let url = `http://127.0.0.1:8000/products/list/?page=${currentPage}`;
                 if (sortBy) {
-                    url += `&sortby=${sortBy}`;
+                    url += `&orderby=${sortBy}`;
                 }
+                console.log(url);
                 const response = await axios.get(url);
                 setProducts(response.data.results);
                 setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setNextPage(response.data.next);
                 setPrevPage(response.data.previous);
+                // Update URL
+                navigate(`/products/list/?page=${currentPage}`);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -41,49 +46,19 @@ function Products() {
         setSortBy(value);
     }; 
 
-    // const handleSearchChange = (e) => {
-    //     setSearch(e.target.value);
-    //     setCurrentPage(1); // Reset current page when search query changes
-    // };
-
-    // const handleFilterChange = (newFilters) => {
-    //     // Update selected filters state
-    //     setSelectedFilters(prevFilters => ({ ...prevFilters, ...newFilters }));
-    //     setCurrentPage(1); // Reset current page when filters change
-    // };
-
-    // const filteredProducts = products.filter((product) => {
-    //     // Filter by search query
-    //     const productName = product.title && product.title.toLowerCase();
-    //     const isMatchingSearch = !search || (productName && productName.includes(search.toLowerCase()));
-
-    //     // Filter by selected filters
-    //     const isMatchingFilters = Object.keys(selectedFilters).every(filterKey => {
-    //         return selectedFilters[filterKey] === '' || selectedFilters[filterKey] === product[filterKey];
-    //     });
-
-    //     return isMatchingSearch && isMatchingFilters;
-    // });
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-
     const handleNextPage = () => {
         if (nextPage) {
-            const page = nextPage.split("=")[1]; // Extract the page number from the URL
-            // console.log("page" + page);
+            const page = nextPage.split("=")[1];
             setCurrentPage(parseInt(page));
         }
     };
 
     const handlePrevPage = () => {
-        if (prevPage) {
-            const page = prevPage.split("=")[1]; // Extract the page number from the URL
-            setCurrentPage(parseInt(page));
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
         }
     };
-
+    
     const renderPageNumbers = () => {
         const pageNumbers = [];
         for (let i = 1; i <= totalPages; i++) {
@@ -144,11 +119,6 @@ function Products() {
                                     </Col>
                                 ))}
                             </Row>
-
-                            {/* No Product found condition */}
-                            {/* {search && currentProducts.length === 0 && (
-                                <div className="text-center">No Products Found.</div>
-                            )} */}
 
                             {/* Pagination */}
                             <nav className="pagination-section" aria-label="Page navigation example">

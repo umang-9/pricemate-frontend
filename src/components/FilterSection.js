@@ -20,7 +20,7 @@ function FilterSection({ products, handleSort }) {
     };
 
     return (
-        <div className="filter-section-container row flex-lg-column">
+        <div className="filter-section-container row flex-lg-column" sticky="top">
             
             <h4 className='fw-semibold mb-4 d-none d-lg-block col col-12'>Filters</h4>
 
@@ -29,10 +29,10 @@ function FilterSection({ products, handleSort }) {
                 <Form.Label>Sort By:</Form.Label>
                 <Form.Select aria-label="sort-filter" onChange={handleSortChange} value={sortBy}>
                     <option>Select</option>
-                    <option value="1">Alphabetically, A-Z</option>
-                    <option value="2">Alphabetically, Z-A</option>
-                    <option value="3">Price, low to high</option>
-                    <option value="4">Price, high to low</option>
+                    <option value="alphabetically_az">Alphabetically, A-Z</option>
+                    <option value="alphabetically_za">Alphabetically, Z-A</option>
+                    <option value="price__amount">Price, low to high</option>
+                    <option value="-price__amount">Price, high to low</option>
                 </Form.Select>
             </Form.Group>
 

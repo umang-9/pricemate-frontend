@@ -8,8 +8,8 @@ import Col from 'react-bootstrap/Col';
 const featureItems = [
     {
         image: 'assets/images/price_comparison_engine_icon.svg',
-        title: 'Price Comparison Engine',
-        content: 'Easily compare prices across multiple retailers with our intuitive price comparison engine. Find the best deals on the products you love without the hassle of visiting numerous websites.'
+        title: 'Price Tracking',
+        content: 'Stay updated on the latest prices of your favorite products across multiple online retailers with our advanced price tracking feature. Monitor price changes, set alerts, and make informed purchasing decisions effortlessly.    '
     },
     {
         image: 'assets/images/wide_retailer_network_icon.png',
@@ -19,7 +19,7 @@ const featureItems = [
     {
         image: 'assets/images/mobile_accessaibility_icon.svg',
         title: 'Mobile Accessibility',
-        content: "Access our price matching platform anytime, anywhere, with our mobile-friendly interface. Whether you're at home or on the go, take advantage of our features conveniently from your smartphone or tablet."
+        content: "Access our price tracking platform anytime, anywhere, with our mobile-friendly interface. Whether you're at home or on the go, take advantage of our features conveniently from your smartphone or tablet."
     }
 ]
 
