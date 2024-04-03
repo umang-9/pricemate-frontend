@@ -18,6 +18,7 @@ function Products() {
     const [sortBy, setSortBy] = useState('');
     const [message, setMessage] = useState('');
     const [nonFieldErrors, setNonFieldErrors] = useState([]);
+    const [totalCount, setTotalCount] = useState(0);
 
     // Token and headers to get User.
     const headers = {
@@ -37,10 +38,21 @@ function Products() {
                 if (sortBy) {
                     url += `&orderby=${sortBy}`;
                 }
-                console.log(url);
+                // console.log(url);
                 const response = await axios.get(url, { headers });
-                setProducts(response.data.results);
-                setTotalPages(Math.ceil(response.data.count / itemsPerPage));
+                // console.log(response.data);
+                // Filter out duplicates based on product id
+                const uniqueProducts = response.data.results.filter((product, index, self) =>
+                    index === self.findIndex((p) => (
+                        p.id === product.id
+                    ))
+                );
+                setProducts(uniqueProducts);
+                // Calculate total count of unique products
+                const totalCount = response.data.count;
+                setTotalCount(totalCount);
+                // Recalculate total pages based on the total count and items per page
+                setTotalPages(Math.ceil(totalCount / itemsPerPage));
                 setNextPage(response.data.next);
                 setPrevPage(response.data.previous);
                 // Update URL
@@ -55,6 +67,11 @@ function Products() {
 
     const handleSort = (value) => {
         setSortBy(value);
+        if (value === 'alphabetically_az') {
+            setProducts([...products].sort((a, b) => a.title.localeCompare(b.title)));
+        } else if (value === 'alphabetically_za') {
+            setProducts([...products].sort((a, b) => b.title.localeCompare(a.title)));
+        }
     };
 
     const handleNextPage = () => {
@@ -69,6 +86,10 @@ function Products() {
             setCurrentPage(currentPage - 1);
         }
     };
+
+    const navigateToFirstPage = () => {
+        setCurrentPage(1);
+    }
     
     const renderPageNumbers = () => {
         const pageNumbers = [];
@@ -162,9 +183,10 @@ function Products() {
                     <h2 className="text-center mb-5">Products</h2>
                     <div className="row">
                         <div className="col-lg-3 mb-5 mb-lg-0">
-                            <FilterSection products={products} handleSort={handleSort} />
+                            <FilterSection products={products} handleSort={handleSort} navigateToFirstPage={navigateToFirstPage} />
                         </div>
                         <div className="col-lg-9">
+                            <p className='text-end'>{totalCount} results </p>
                             {/* Product Listing */}
                             <Row>
                                 {products.map(product => (

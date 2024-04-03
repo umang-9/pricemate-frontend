@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FilterSection({ products, handleSort }) {
+function FilterSection({ products, handleSort, navigateToFirstPage }) {
 
     const [filters, setFilters] = useState({
         platform: '',
@@ -17,6 +17,7 @@ function FilterSection({ products, handleSort }) {
         const { value } = e.target;
         setSortBy(value);
         handleSort(value);
+        navigateToFirstPage();
     };
 
     return (
