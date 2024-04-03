@@ -29,6 +29,10 @@ const BarChart = ({ data }) => {
                     scales: {
                         y: {
                             beginAtZero: true
+                        },
+                        x: {
+                            barPercentage: 0.5,
+                            barThickness: 5
                         }
                     }
                 }

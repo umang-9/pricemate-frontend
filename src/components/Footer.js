@@ -69,7 +69,7 @@ function Footer() {
 								<p>Have questions or need support?</p>
 								<h6>Contact us:</h6>
 								<ul>
-									<li>Email: <a href="mailto:info@pricematch.com">info@pricematch.com</a></li>
+									<li>Email: <a href="mailto:info@pricemate.com">info@pricemate.com</a></li>
 									<li>Phone: <a href="tel:18001234567">1-800-123-4567</a></li>
 								</ul>
 							</div>
@@ -96,7 +96,7 @@ function Footer() {
 			<div className='footer-bottom'>
 				<Container>
 					<p className="copyright">
-						© 2024 <Link to={Links.indexURL}>Price Match </Link>. All rights reserved
+						© 2024 <Link to={Links.indexURL}>Price Mate </Link>. All rights reserved
 					</p>
 				</Container>
 			</div>

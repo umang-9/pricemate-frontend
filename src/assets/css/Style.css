@@ -88,6 +88,12 @@ a:active {
 .btn.btn-sm {
     padding: 10px 15px;
 }
+.btn.btn-link {
+    text-decoration: none;
+    --bs-btn-color: var(--secondaryColor);
+    --bs-btn-hover-color: var(--primaryColor);
+    --bs-btn-active-color: var(--primaryColor);
+}
 .btn:focus {
     -webkit-box-shadow: none;
             box-shadow: none;

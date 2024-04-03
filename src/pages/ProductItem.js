@@ -18,8 +18,6 @@ function ProductItem() {
 	const [product, setProduct] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [message, setMessage] = useState('');
-	const navigate = useNavigate();
 
 	// Token and headers to get User.
 	const headers = {
@@ -37,6 +35,7 @@ function ProductItem() {
 					headers: headers,
 				},);
 				setProduct(response.data);
+				console.log(response.data);
 				setLoading(false);
 			} catch (error) {
 				setError(error.message);
@@ -67,7 +66,7 @@ function ProductItem() {
 							<h2>{product.title}</h2>
 
 							{/* Add Product to watch list */}
-							<WatchList product={product} token={token} headers={headers} />
+							<WatchList product={product} token={token} headers={headers} setProduct={setProduct} />
 
 							<a className="btn btn-primary btn-sm mt-3" href={product.link} target='_blank'>
 								{/* {product.platform.charAt(0).toUpperCase() + product.platform.slice(1)} */}
@@ -76,6 +75,7 @@ function ProductItem() {
 						</Col>
 
 						<Col md={12} className='mt-5'>
+							<h4 className='border-bottom pb-3 mb-5'>Desciption:</h4>
 							<div dangerouslySetInnerHTML={{ __html: product.about }} />
 						</Col>
 

@@ -5,8 +5,8 @@ import BarChart from './BarChart';
 
 const PriceChart = ({ product }) => {
     return (
-        <Col md={12} className='mt-5'>
-            <h3>Price History Chart</h3>
+        <Col md={6} className='mt-5 ps-0 ps-md-5'>
+            <h4 className='border-bottom pb-3 mb-5'>Price History:</h4>
             <div style={{ width: 700 }}>
                 <BarChart data={product.prices} />
             </div>

@@ -11,8 +11,8 @@ const PriceList = ({ product }) => {
     };
 
     return (
-        <Col md={12} className='mt-5'>
-            <h3>Prices:</h3>
+        <Col md={6} className='mt-5 pe-0 pe-md-5'>
+            <h4 className='border-bottom pb-3 mb-5'>Prices:</h4>
             <table className='table table-bordered w-50'>
 
                 <thead>

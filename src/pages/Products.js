@@ -199,17 +199,6 @@ function Products() {
                                             >
                                                 <img src={product.image} alt="product1" />
                                             </Link>
-                                            {token &&
-
-                                                (<button
-
-                                                    type="button"
-                                                    className={`btn bt-danger mb-1 ${(product.watch.id) ? 'active' : 'inactive'}`}
-                                                    onClick={() => handleWishlist(product.id, product.watch.id)}
-                                                >
-                                                    <i className='fa fa-heart'></i>
-                                                </button>)}
-                                            {message && <div>{message}</div>}
                                             <span className='product-line'></span>
                                             <p className="product-platform fw-normal">{product.platform}</p>
                                             <p className="product-title fw-semibold">{product.title}</p>
