@@ -43,7 +43,7 @@ const SearchResult = () => {
                                                         <h6>${product.prices[0].amount}</h6>
                                                     </div>
                                                 )}
-                                                <Link className="btn btn-primary btn-sm mt-auto" to={`/products/detail/${product.id}`} state={{ query: '' }}>
+                                                <Link className="btn btn-primary btn-sm mt-auto" to={`/products/detail/${product.id}`}>
                                                     Track Price
                                                 </Link>
                                             </div>

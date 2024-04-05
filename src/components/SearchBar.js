@@ -15,6 +15,7 @@ const SearchBar = ({ history }) => {
 
                 // Navigate to another page with search results
                 navigate(`/search/results/?product=${query}`, { state: { results: data, query } });
+                setQuery("");
             } else {
                 console.error('Error fetching search results:', response.statusText);
             }

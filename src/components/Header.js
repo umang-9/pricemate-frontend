@@ -90,27 +90,27 @@ function Header() {
 				<Navbar.Collapse className='' id='basic-navbar-nav'>
 					<Nav >
 						{access_token && (
-							<LinkContainer to={Links.indexURL}>
+							<LinkContainer to={Links.indexURL} >
 								<Nav.Link>Home</Nav.Link>
 							</LinkContainer>
 						)}
 
-						<LinkContainer to={Links.products}>
+						<LinkContainer to={Links.products} >
 							<Nav.Link>Products</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to={Links.productRequest}>
+						<LinkContainer to={Links.productRequest} >
 							<Nav.Link>Request a product</Nav.Link>
 						</LinkContainer>
 
 						{!access_token && (
-							<LinkContainer to={Links.login}>
+							<LinkContainer to={Links.login} >
 								<Nav.Link>Login</Nav.Link>
 							</LinkContainer>
 						)}
 
 						{!access_token && (
-							<LinkContainer to={Links.signUp}>
+							<LinkContainer to={Links.signUp} >
 								<Nav.Link>Signup</Nav.Link>
 							</LinkContainer>
 						)}
