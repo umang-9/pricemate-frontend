@@ -59,11 +59,6 @@ function Products() {
 
     const handleSort = (value) => {
         setSortBy(value);
-        // if (value === 'alphabetically_az') {
-        //     setProducts([...products].sort((a, b) => a.title.localeCompare(b.title)));
-        // } else if (value === 'alphabetically_za') {
-        //     setProducts([...products].sort((a, b) => b.title.localeCompare(a.title)));
-        // }
     };
 
     const handleFilterByPrice = (value) => {

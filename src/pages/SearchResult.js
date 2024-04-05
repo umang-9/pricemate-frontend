@@ -17,15 +17,15 @@ const SearchResult = () => {
         <div>
             <section className="features-section">
                 <Container>
-                    <h2 className="text-center mb-5">Search Results of {query}</h2>
+                    <h2 className="text-center mb-5">Search Results of "{query}"</h2>
                     <div className="row">
-                        <div className="col-lg-9">
+                        <div className="col-12">
                             <p className='text-end'>{totalCount} results </p>
                             {/* Product Listing */}
                             <Row>
                                 {totalCount > 0 ? (
                                     results.map(product => (
-                                        <Col className="mb-4" key={product.id} md={6} lg={4}>
+                                        <Col className="mb-4" key={product.id} md={6} lg={3}>
                                             <div className="product">
                                                 <Link
                                                     onClick={() => window.top(0, 0)}
