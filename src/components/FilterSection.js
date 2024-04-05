@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function FilterSection({ products, handleSort, navigateToFirstPage, handleFilterByPrice }) {
 
     const [priceRange, setPriceRange] = useState('');
+    const [navbarExpanded, setNavbarExpanded] = useState(false);
 
     const handlePriceRangeChange = (e) => {
         const { value } = e.target;
@@ -14,6 +15,7 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
         setPriceRange(value);
         handleFilterByPrice(value);
         navigateToFirstPage();
+        setNavbarExpanded(false);
     };
 
     const [sortBy, setSortBy] = useState('');
@@ -44,21 +46,29 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
 
             {/* Main filter start  */}
             <div className='filter-section col-12 col-sm-6 col-lg-12'>
-                <Navbar expand='lg' className=''>
+                {/* <Navbar className=''> */}
 
                     {/* Filter title and filter icon for mobile view */}
-                    <Navbar.Toggle className="navbar-toggler" aria-controls="filterSection">
+                    {/* <Navbar.Toggle 
+                        className="navbar-toggler" 
+                        aria-controls="filterSection"
+                        onClick={() => setNavbarExpanded(!navbarExpanded)}
+                    >
                         <span>Filter</span>
                         <span className="navbar-toggler-icon"><i className="fa fa-sliders" aria-hidden="true"></i></span>
-                    </Navbar.Toggle>
+                    </Navbar.Toggle> */}
                     
                     {/* Filter menu */}
-                    <Navbar.Collapse className="flex-column" id="filterSection">
+                    {/* <Navbar.Collapse className="flex-column" id="filterSection"> */}
 
                         {/* Filter menu close button for mobile */}
-                        <Navbar.Toggle className="navbar-toggler navbar-toggler-close" aria-controls="filterSection">
+                        {/* <Navbar.Toggle 
+                            className="navbar-toggler navbar-toggler-close" 
+                            aria-controls="filterSection"
+                            onClick={() => setNavbarExpanded(false)}
+                        >
                             <span className="navbar-toggler-icon"><i className="fa fa-times-circle" aria-hidden="true"></i></span>
-                        </Navbar.Toggle>
+                        </Navbar.Toggle> */}
 
                         {/* Platform Filter */}
                         {/* <Form.Group className="filter-input mb-3" controlId="platform">
@@ -78,7 +88,7 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
                         </Form.Group> */}
 
                         {/* Category filter */}
-                        <Form.Group className="filter-input mb-3" controlId="category">
+                        <Form.Group className="filter-input mb-0 mb-md-0" controlId="category">
                             <Form.Label>Price</Form.Label>
                             <Form.Select
                                 value={priceRange}
@@ -92,8 +102,8 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
                             </Form.Select>
                         </Form.Group>
 
-                    </Navbar.Collapse>
-                </Navbar>
+                    {/* </Navbar.Collapse>
+                </Navbar> */}
             </div>
         </div>
     );

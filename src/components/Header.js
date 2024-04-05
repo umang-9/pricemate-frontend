@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -12,6 +12,7 @@ import { Links } from '../App';
 
 function Header() {
 	const navigate = useNavigate();
+	const [navbarExpanded, setNavbarExpanded] = useState(false);
 
 	const access_token = localStorage.getItem('token');
 
@@ -40,17 +41,39 @@ function Header() {
 					</Navbar.Brand>
 				</h1>
 
-				{/* Search form */}
-				<form className="search-form me-0 me-sm-3">
-					<div className="search-form-container bg-light rounded rounded-pill shadow-sm ">
-						<div className="input-group">
-							<input type="search" placeholder="What're you searching for?" aria-describedby="btnSearch" className="form-control border-0 bg-light" />
-							<div className="input-group-append">
-								<button id="btnSearch" type="submit" className="btn btn-sm btn-link text-primary"><i className="fa fa-search"></i></button>
+				{/* Search box */}
+				<Navbar className='search-box' expand='lg' >
+					<Navbar.Toggle 
+                        className="navbar-toggler" 
+                        onClick={() => setNavbarExpanded(!navbarExpanded)}
+                    >
+                        <span className="navbar-toggler-icon"><i className="fa fa-search" aria-hidden="true"></i></span>
+                    </Navbar.Toggle>
+
+					<Navbar.Collapse className="flex-column" id="filterSection">
+
+						{/* Search box close button for mobile */}
+						<Navbar.Toggle 
+							className="navbar-toggler navbar-toggler-close" 
+							aria-controls="filterSection"
+							onClick={() => setNavbarExpanded(false)}
+						>
+							<span className="navbar-toggler-icon"><i className="fa fa-times-circle" aria-hidden="true"></i></span>
+						</Navbar.Toggle>
+
+						{/* Search form */}
+						<form className="search-form me-0 me-sm-3">
+							<div className="search-form-container bg-light rounded rounded-pill shadow-sm ">
+								<div className="input-group">
+									<input type="search" placeholder="What're you searching for?" aria-describedby="btnSearch" className="form-control border-0 bg-light" />
+									<div className="input-group-append">
+										<button id="btnSearch" type="submit" className="btn btn-sm btn-link text-primary"><i className="fa fa-search"></i></button>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				</form>
+						</form>
+					</Navbar.Collapse>
+				</Navbar>
 
 				<Navbar.Toggle aria-controls='basic-navbar-nav'>
 					<span></span>
