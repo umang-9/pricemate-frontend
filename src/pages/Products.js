@@ -34,7 +34,9 @@ function Products() {
                 const response = await axios.get(url);
                 // console.log(response.data);
                 // Filter out duplicates based on product id
-                const uniqueProducts = response.data.results
+                const uniqueProducts = response.data.results.filter((product, index, self) =>
+                    index === self.findIndex((p) => p.id === product.id)
+                );
                 setProducts(uniqueProducts);
                 // Calculate total count of unique products
                 const totalUniqueProductsCount = uniqueProducts.length;
@@ -116,7 +118,7 @@ function Products() {
                             <FilterSection products={products} handleSort={handleSort} handleFilterByPrice={handleFilterByPrice} navigateToFirstPage={navigateToFirstPage} />
                         </div>
                         <div className="col-lg-9">
-                            <p className='text-end'>{totalCount} results </p>
+                            <p className='text-end'>{totalUniqueProductsCount} results </p>
                             {/* Product Listing */}
                             <Row>
                                 {products.map(product => (
