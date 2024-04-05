@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Links } from '../App';
+
+import SearchBar from './SearchBar';
 
 function Header() {
 	const navigate = useNavigate();
@@ -43,18 +45,18 @@ function Header() {
 
 				{/* Search box */}
 				<Navbar className='search-box' expand='lg' >
-					<Navbar.Toggle 
-                        className="navbar-toggler" 
-                        onClick={() => setNavbarExpanded(!navbarExpanded)}
-                    >
-                        <span className="navbar-toggler-icon"><i className="fa fa-search" aria-hidden="true"></i></span>
-                    </Navbar.Toggle>
+					<Navbar.Toggle
+						className="navbar-toggler"
+						onClick={() => setNavbarExpanded(!navbarExpanded)}
+					>
+						<span className="navbar-toggler-icon"><i className="fa fa-search" aria-hidden="true"></i></span>
+					</Navbar.Toggle>
 
 					<Navbar.Collapse className="flex-column" id="filterSection">
 
 						{/* Search box close button for mobile */}
-						<Navbar.Toggle 
-							className="navbar-toggler navbar-toggler-close" 
+						<Navbar.Toggle
+							className="navbar-toggler navbar-toggler-close"
 							aria-controls="filterSection"
 							onClick={() => setNavbarExpanded(false)}
 						>
@@ -62,7 +64,7 @@ function Header() {
 						</Navbar.Toggle>
 
 						{/* Search form */}
-						<form className="search-form me-0 me-sm-3">
+						{/* <form className="search-form me-0 me-sm-3">
 							<div className="search-form-container bg-light rounded rounded-pill shadow-sm ">
 								<div className="input-group">
 									<input type="search" placeholder="What're you searching for?" aria-describedby="btnSearch" className="form-control border-0 bg-light" />
@@ -71,7 +73,8 @@ function Header() {
 									</div>
 								</div>
 							</div>
-						</form>
+						</form> */}
+						<SearchBar />
 					</Navbar.Collapse>
 				</Navbar>
 
@@ -91,7 +94,7 @@ function Header() {
 								<Nav.Link>Home</Nav.Link>
 							</LinkContainer>
 						)}
-							
+
 						<LinkContainer to={Links.products}>
 							<Nav.Link>Products</Nav.Link>
 						</LinkContainer>
