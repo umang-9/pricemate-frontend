@@ -16,6 +16,7 @@ import RootLayout from './layouts/RootLayout';
 import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
 import ProductRequest from './pages/ProductRequest';
+import ProductSearch from './pages/SearchResult';
 
 export const Links = {
 	indexURL: '/',
@@ -26,6 +27,7 @@ export const Links = {
 	products: '/products/list/',
 	productItem: '/products/detail/:id',
 	productRequest: 'products/request',
+	ProductSearch: '/search/results',
 };
 
 const router = createBrowserRouter(
@@ -43,6 +45,7 @@ const router = createBrowserRouter(
 			<Route path={Links.products} element={<Products />} />
 			<Route path={Links.productItem} element={<ProductItem />} />
 			<Route path={Links.productRequest} element={<ProductRequest />} />
+			<Route path={Links.ProductSearch} element={<ProductSearch />} />
 		</Route>,
 	),
 );
