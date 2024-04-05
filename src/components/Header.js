@@ -68,12 +68,10 @@ function Header() {
 								<Nav.Link>Home</Nav.Link>
 							</LinkContainer>
 						)}
-
-						{access_token && (
-							<LinkContainer to={Links.products}>
-								<Nav.Link>Products</Nav.Link>
-							</LinkContainer>
-						)}
+							
+						<LinkContainer to={Links.products}>
+							<Nav.Link>Products</Nav.Link>
+						</LinkContainer>
 
 						<LinkContainer to={Links.productRequest}>
 							<Nav.Link>Request a product</Nav.Link>

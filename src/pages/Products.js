@@ -8,27 +8,15 @@ import FilterSection from '../components/FilterSection';
 
 function Products() {
     const [products, setProducts] = useState([]);
-    const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(12); // Display 12 products per page
-    const [selectedFilters, setSelectedFilters] = useState({});
     const [totalPages, setTotalPages] = useState(0);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [sortBy, setSortBy] = useState('');
-    const [message, setMessage] = useState('');
-    const [nonFieldErrors, setNonFieldErrors] = useState([]);
+    const [priceRangeFilter, setPriceRangeFilter] = useState('All');
     const [totalCount, setTotalCount] = useState(0);
-
-    // Token and headers to get User.
-    const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    };
-    const token = localStorage.getItem('token');
-    if (token != null) {
-        headers['Authorization'] = `Token ${token}`;
-    }
-
+    const [totalUniqueProductsCount, setTotalUniqueProductsCount] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,19 +26,21 @@ function Products() {
                 if (sortBy) {
                     url += `&orderby=${sortBy}`;
                 }
-                // console.log(url);
-                const response = await axios.get(url, { headers });
+                if (priceRangeFilter) {
+                    console.log("priceRangeFilter=" +priceRangeFilter);
+                    url += `&filterby=${priceRangeFilter}`;
+                }
+                console.log(url);
+                const response = await axios.get(url);
                 // console.log(response.data);
                 // Filter out duplicates based on product id
-                const uniqueProducts = response.data.results.filter((product, index, self) =>
-                    index === self.findIndex((p) => (
-                        p.id === product.id
-                    ))
-                );
+                const uniqueProducts = response.data.results
                 setProducts(uniqueProducts);
                 // Calculate total count of unique products
+                const totalUniqueProductsCount = uniqueProducts.length;
                 const totalCount = response.data.count;
                 setTotalCount(totalCount);
+                setTotalUniqueProductsCount(totalUniqueProductsCount);
                 // Recalculate total pages based on the total count and items per page
                 setTotalPages(Math.ceil(totalCount / itemsPerPage));
                 setNextPage(response.data.next);
@@ -63,15 +53,19 @@ function Products() {
         };
 
         fetchProducts();
-    }, [currentPage, sortBy]);
+    }, [currentPage, sortBy, priceRangeFilter]);
 
     const handleSort = (value) => {
         setSortBy(value);
-        if (value === 'alphabetically_az') {
-            setProducts([...products].sort((a, b) => a.title.localeCompare(b.title)));
-        } else if (value === 'alphabetically_za') {
-            setProducts([...products].sort((a, b) => b.title.localeCompare(a.title)));
-        }
+        // if (value === 'alphabetically_az') {
+        //     setProducts([...products].sort((a, b) => a.title.localeCompare(b.title)));
+        // } else if (value === 'alphabetically_za') {
+        //     setProducts([...products].sort((a, b) => b.title.localeCompare(a.title)));
+        // }
+    };
+
+    const handleFilterByPrice = (value) => {
+        setPriceRangeFilter(value);
     };
 
     const handleNextPage = () => {
@@ -112,70 +106,6 @@ function Products() {
         return pageNumbers;
     };
 
-
-    // Wishlist Products 
-    const handleWishlist = async (productId) => {
-
-        try {
-            // Check if the product is already in the watchlist
-            const isAlreadyInWishlist = isProductInWishlist(productId);
-
-            // If the product is not in the watchlist, add it
-            if (!isAlreadyInWishlist) {
-                const response = await axios.post(
-                    'http://localhost:8000/products/watch/',
-                    { product: productId },
-                    {
-                        headers: headers,
-                    },
-                );
-                console.log("Product" + productId)
-                console.log(response);
-
-                if (response.status === 200) {
-                    setMessage('Product is added into watchlist');
-                    setTimeout(() => {
-                        setMessage('');
-                    }, 3000);
-                }
-            } else {
-                // if product already added into watchlist
-                const response = await axios.post(
-                    'http://localhost:8000/products/watch/delete',
-                    //{ id: watchId }
-                );
-                console.log("Product" + productId)
-                console.log(response);
-
-                if (response.status === 204) {
-                    setMessage('Product is removed from watchlist');
-                    setTimeout(() => {
-                        setMessage('');
-                    }, 3000);
-                }
-            }
-        } catch (error) {
-            console.error(error);
-            if (error.response && error.response.data.non_field_errors) {
-                setMessage(error.response.data.non_field_errors);
-            }
-        }
-    };
-
-    //to check product is already added into watch
-    const isProductInWishlist = async (product_id, watch) => {
-        try {
-            const watchId = watch.map(watch => ({ watch }))
-            const res = JSON.stringify(watchId)
-            const parseData = JSON.parse(res)
-            const watch_id = res.includes(product_id) ? true : false;
-            console.log("Res" + res)
-            return res
-        } catch (err) {
-            console.error("Error while processing watch data : ", err);
-            return false
-        }
-    };
     return (
         <div>
             <section className="features-section">
@@ -183,7 +113,7 @@ function Products() {
                     <h2 className="text-center mb-5">Products</h2>
                     <div className="row">
                         <div className="col-lg-3 mb-5 mb-lg-0">
-                            <FilterSection products={products} handleSort={handleSort} navigateToFirstPage={navigateToFirstPage} />
+                            <FilterSection products={products} handleSort={handleSort} handleFilterByPrice={handleFilterByPrice} navigateToFirstPage={navigateToFirstPage} />
                         </div>
                         <div className="col-lg-9">
                             <p className='text-end'>{totalCount} results </p>
@@ -209,7 +139,7 @@ function Products() {
                                                 </div>
                                             )}
                                             <Link className="btn btn-primary btn-sm mt-auto" to={`/products/detail/${product.id}`}>
-                                                Compare Price
+                                                Track Price
                                             </Link>
                                         </div>
                                     </Col>

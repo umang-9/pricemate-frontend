@@ -4,12 +4,17 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FilterSection({ products, handleSort, navigateToFirstPage }) {
+function FilterSection({ products, handleSort, navigateToFirstPage, handleFilterByPrice }) {
 
-    const [filters, setFilters] = useState({
-        platform: '',
-        price: '',
-    });
+    const [priceRange, setPriceRange] = useState('');
+
+    const handlePriceRangeChange = (e) => {
+        const { value } = e.target;
+        console.log("prize filter value: " + value)
+        setPriceRange(value);
+        handleFilterByPrice(value);
+        navigateToFirstPage();
+    };
 
     const [sortBy, setSortBy] = useState('');
 
@@ -30,8 +35,8 @@ function FilterSection({ products, handleSort, navigateToFirstPage }) {
                 <Form.Label>Sort By:</Form.Label>
                 <Form.Select aria-label="sort-filter" onChange={handleSortChange} value={sortBy}>
                     <option>Select</option>
-                    <option value="alphabetically_az">Alphabetically, A-Z</option>
-                    <option value="alphabetically_za">Alphabetically, Z-A</option>
+                    <option value="title">Alphabetically, A-Z</option>
+                    <option value="-title">Alphabetically, Z-A</option>
                     <option value="price__amount">Price, low to high</option>
                     <option value="-price__amount">Price, high to low</option>
                 </Form.Select>
@@ -56,7 +61,7 @@ function FilterSection({ products, handleSort, navigateToFirstPage }) {
                         </Navbar.Toggle>
 
                         {/* Platform Filter */}
-                        <Form.Group className="filter-input mb-3" controlId="platform">
+                        {/* <Form.Group className="filter-input mb-3" controlId="platform">
                             <Form.Label>Platform</Form.Label>
                             <Form.Select
                                 as="select"
@@ -70,21 +75,20 @@ function FilterSection({ products, handleSort, navigateToFirstPage }) {
                                     </option>
                                 ))}
                             </Form.Select>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         {/* Category filter */}
                         <Form.Group className="filter-input mb-3" controlId="category">
-                            <Form.Label>Category</Form.Label>
+                            <Form.Label>Price</Form.Label>
                             <Form.Select
-                                as="select"
-                                name="category"
-                                value={filters.price}
-                                
+                                value={priceRange}
+                                onChange={handlePriceRangeChange}
                             >
                                 <option value="">All</option>
-                                <option value="under20">$0 - $500</option>
-                                <option value="20to50">$500 - $1000</option>
-                                <option value="50to100">$1000 - $2000</option>
+                                <option value="price__0__100">$0 - $100</option>
+                                <option value="price__100__500">$100 - $500</option>
+                                <option value="price__500__1000">$500 - $1000</option>
+                                <option value="price__1000__2000">$1000 - $2000</option>
                             </Form.Select>
                         </Form.Group>
 

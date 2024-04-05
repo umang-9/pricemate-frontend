@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { Links } from '../App';
 
 const Breadcrumb = () => {
   const location = useLocation(); // Get the current location object
@@ -36,14 +37,14 @@ const Breadcrumb = () => {
     // Add Home breadcrumb item
     breadcrumbItems.push(
       <li key="home" className="breadcrumb-item">
-        <Link to="/">Home</Link>
+        <Link to={Links.indexURL}>Home</Link>
       </li>
     );
 
     // Add Products breadcrumb item
     breadcrumbItems.push(
       <li key="products" className="breadcrumb-item">
-        <Link to="/products">Products</Link>
+        <Link to={Links.products}>Products</Link>
       </li>
     );
 
