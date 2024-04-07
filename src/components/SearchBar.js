@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SearchBar = ({ history }) => {
+const SearchBar = (props) => {
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
 
@@ -16,6 +16,9 @@ const SearchBar = ({ history }) => {
                 // Navigate to another page with search results
                 navigate(`/search/results/?product=${query}`, { state: { results: data, query } });
                 setQuery("");
+
+                // Close the navbar
+                props.setSearchNavbarExpanded(false);
             } else {
                 console.error('Error fetching search results:', response.statusText);
             }

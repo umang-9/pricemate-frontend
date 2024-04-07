@@ -14,6 +14,7 @@ import SearchBar from './SearchBar';
 
 function Header() {
 	const navigate = useNavigate();
+	const [searchNavbarExpanded, setSearchNavbarExpanded] = useState(false);
 	const [navbarExpanded, setNavbarExpanded] = useState(false);
 
 	const access_token = localStorage.getItem('token');
@@ -27,7 +28,8 @@ function Header() {
 	};
 
 	return (
-		<Navbar sticky='top' expand='lg' className='header bg-body-tertiary'>
+		// Main Header Menu 
+		<Navbar sticky='top' expand='lg' className='header bg-body-tertiary'  expanded={navbarExpanded}>
 			<Container>
 				<h1 className='main-logo'>
 					<Navbar.Brand>
@@ -43,42 +45,36 @@ function Header() {
 					</Navbar.Brand>
 				</h1>
 
-				{/* Search box */}
-				<Navbar className='search-box' expand='lg' >
+				{/* Search box start */}
+				<Navbar className='search-box' expand='lg' expanded={searchNavbarExpanded} >
 					<Navbar.Toggle
 						className="navbar-toggler"
-						onClick={() => setNavbarExpanded(!navbarExpanded)}
+						onClick={() => setSearchNavbarExpanded(!searchNavbarExpanded)}
 					>
 						<span className="navbar-toggler-icon"><i className="fa fa-search" aria-hidden="true"></i></span>
 					</Navbar.Toggle>
 
-					<Navbar.Collapse className="flex-column" id="filterSection">
+					<Navbar.Collapse className="flex-column" id="seachBox">
 
 						{/* Search box close button for mobile */}
 						<Navbar.Toggle
 							className="navbar-toggler navbar-toggler-close"
-							aria-controls="filterSection"
-							onClick={() => setNavbarExpanded(false)}
+							aria-controls="seachBox"
+							onClick={() => setSearchNavbarExpanded(false)}
 						>
 							<span className="navbar-toggler-icon"><i className="fa fa-times-circle" aria-hidden="true"></i></span>
 						</Navbar.Toggle>
 
-						{/* Search form */}
-						{/* <form className="search-form me-0 me-sm-3">
-							<div className="search-form-container bg-light rounded rounded-pill shadow-sm ">
-								<div className="input-group">
-									<input type="search" placeholder="What're you searching for?" aria-describedby="btnSearch" className="form-control border-0 bg-light" />
-									<div className="input-group-append">
-										<button id="btnSearch" type="submit" className="btn btn-sm btn-link text-primary"><i className="fa fa-search"></i></button>
-									</div>
-								</div>
-							</div>
-						</form> */}
-						<SearchBar />
+						<SearchBar setSearchNavbarExpanded={setSearchNavbarExpanded} />
 					</Navbar.Collapse>
 				</Navbar>
+				{/* Search box end */}
 
-				<Navbar.Toggle aria-controls='basic-navbar-nav'>
+				{/* Main menu toggle button  */}
+				<Navbar.Toggle 
+					aria-controls='basic-navbar-nav'
+					onClick={() => setNavbarExpanded(!navbarExpanded)}
+				>
 					<span></span>
 					<span></span>
 					<span></span>
@@ -87,31 +83,30 @@ function Header() {
 					<span></span>
 				</Navbar.Toggle>
 
+				{/* Main menu navbar */}
 				<Navbar.Collapse className='' id='basic-navbar-nav'>
 					<Nav >
-						{access_token && (
-							<LinkContainer to={Links.indexURL} >
-								<Nav.Link>Home</Nav.Link>
-							</LinkContainer>
-						)}
+						<LinkContainer to={Links.indexURL} >
+							<Nav.Link onClick={() => setNavbarExpanded(false)}>Home</Nav.Link>
+						</LinkContainer>
 
 						<LinkContainer to={Links.products} >
-							<Nav.Link>Products</Nav.Link>
+							<Nav.Link onClick={() => setNavbarExpanded(false)}>Products</Nav.Link>
 						</LinkContainer>
 
 						<LinkContainer to={Links.productRequest} >
-							<Nav.Link>Request a product</Nav.Link>
+							<Nav.Link onClick={() => setNavbarExpanded(false)}>Request a product</Nav.Link>
 						</LinkContainer>
 
 						{!access_token && (
-							<LinkContainer to={Links.login} >
+							<LinkContainer to={Links.login}  onClick={() => setNavbarExpanded(false)}>
 								<Nav.Link>Login</Nav.Link>
 							</LinkContainer>
 						)}
 
 						{!access_token && (
 							<LinkContainer to={Links.signUp} >
-								<Nav.Link>Signup</Nav.Link>
+								<Nav.Link  onClick={() => setNavbarExpanded(false)}>Signup</Nav.Link>
 							</LinkContainer>
 						)}
 
