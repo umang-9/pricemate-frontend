@@ -32,9 +32,10 @@ function Products() {
                 }
                 console.log(url);
                 const response = await axios.get(url);
+                const { results, next, previous } = response.data;
                 // console.log(response.data);
                 // Filter out duplicates based on product id
-                const uniqueProducts = response.data.results.filter((product, index, self) =>
+                const uniqueProducts = results.filter((product, index, self) =>
                     index === self.findIndex((p) => p.id === product.id)
                 );
                 setProducts(uniqueProducts);
@@ -45,8 +46,9 @@ function Products() {
                 setTotalUniqueProductsCount(totalUniqueProductsCount);
                 // Recalculate total pages based on the total count and items per page
                 setTotalPages(Math.ceil(totalCount / itemsPerPage));
-                setNextPage(response.data.next);
-                setPrevPage(response.data.previous);
+                // Set next and previous page URLs
+                setNextPage(next);
+                setPrevPage(previous);
                 // Update URL
                 navigate(`/products/list/?page=${currentPage}`);
             } catch (error) {
@@ -67,8 +69,8 @@ function Products() {
 
     const handleNextPage = () => {
         if (nextPage) {
-            const page = nextPage.split("=")[1];
-            setCurrentPage(parseInt(page));
+            // const page = nextPage.split("=")[1];
+            setCurrentPage(currentPage + 1);
         }
     };
 

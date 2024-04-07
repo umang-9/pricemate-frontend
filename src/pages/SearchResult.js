@@ -17,7 +17,7 @@ const SearchResult = () => {
         <div>
             <section className="features-section">
                 <Container>
-                    <h2 className="text-center mb-5">Search Results of "{query}"</h2>
+                    <h2 className="text-center mb-5">Search Results for "{query}"</h2>
                     <div className="row">
                         <div className="col-12">
                             <p className='text-end'>{totalCount} results </p>
@@ -50,7 +50,7 @@ const SearchResult = () => {
                                         </Col>
                                     ))
                                 ) : (
-                                    <p>No products found.</p>
+                                    <h5 className='text-center text-danger'>No products found.</h5>
                                 )}
                             </Row>
 
