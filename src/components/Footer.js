@@ -23,7 +23,7 @@ function Footer() {
 						<Col sm={12} md={6} lg={3}>
 							<div className="foot-box">
 								<Image src="/assets/images/logo.png" alt="Price Match" fluid />
-								<h5 className='mt-3'>Our address:</h5>
+								<h5 className='mt-5 mt-md-3'>OUR ADDRESS</h5>
 								<address>
 									<p>403-7 Erie Avnue</p>
 									<p>Brantford, ON-N3S0K5</p>
@@ -67,7 +67,7 @@ function Footer() {
 							<div className="foot-box">
 								<h5>CONTACT INFORMATION</h5>
 								<p>Have questions or need support?</p>
-								<h6>Contact us:</h6>
+								<h5 className='mt-5 mt-md-0'>CONTACT US:</h5>
 								<ul>
 									<li>Email: <a href="mailto:info@pricemate.com">info@pricemate.com</a></li>
 									<li>Phone: <a href="tel:18001234567">1-800-123-4567</a></li>

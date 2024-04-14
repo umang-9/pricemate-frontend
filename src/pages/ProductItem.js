@@ -75,7 +75,7 @@ function ProductItem() {
 						</Col>
 
 						<Col md={12} className='mt-5'>
-							<h4 className='border-bottom pb-3 mb-5'>Desciption:</h4>
+							<h4 className='border-bottom pb-3 mb-5'>Desciption</h4>
 							<div dangerouslySetInnerHTML={{ __html: product.about }} />
 						</Col>
 
