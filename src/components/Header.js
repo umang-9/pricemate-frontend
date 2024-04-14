@@ -94,6 +94,12 @@ function Header() {
 							<Nav.Link onClick={() => setNavbarExpanded(false)}>Products</Nav.Link>
 						</LinkContainer>
 
+						{access_token && (
+							<LinkContainer to={Links.WatchList} >
+								<Nav.Link onClick={() => setNavbarExpanded(false)}>Watchlist</Nav.Link>
+							</LinkContainer>
+						)}
+
 						<LinkContainer to={Links.productRequest} >
 							<Nav.Link onClick={() => setNavbarExpanded(false)}>Request a product</Nav.Link>
 						</LinkContainer>

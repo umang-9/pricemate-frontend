@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function FilterSection({ products, handleSort, navigateToFirstPage, handleFilterByPrice }) {
 
     const [priceRange, setPriceRange] = useState('');
+    const [sortBy, setSortBy] = useState('');
     const [navbarExpanded, setNavbarExpanded] = useState(false);
 
     const handlePriceRangeChange = (e) => {
@@ -17,8 +18,6 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
         navigateToFirstPage();
         setNavbarExpanded(false);
     };
-
-    const [sortBy, setSortBy] = useState('');
 
     const handleSortChange = (e) => {
         const { value } = e.target;
@@ -88,7 +87,7 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
                         </Form.Group> */}
 
                         {/* Category filter */}
-                        <Form.Group className="filter-input mb-0 mb-md-0" controlId="category">
+                        <Form.Group className="filter-input mb-0 mb-md-4" controlId="category">
                             <Form.Label>Price</Form.Label>
                             <Form.Select
                                 value={priceRange}

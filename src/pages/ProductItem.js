@@ -35,7 +35,7 @@ function ProductItem() {
 					headers: headers,
 				},);
 				setProduct(response.data);
-				console.log(response.data);
+				// console.log(response.data);
 				setLoading(false);
 			} catch (error) {
 				setError(error.message);
