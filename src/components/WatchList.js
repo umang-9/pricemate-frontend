@@ -81,8 +81,9 @@ const WatchList = ({ product, token, headers, setProduct }) => {
                     // Update the product object by filtering out the removed item
                     setProduct(prevProduct => ({
                         ...prevProduct,
-                        watch: prevProduct.watch.filter(item => item.id !== watchId)
+                        watch: prevProduct && prevProduct.watch ? prevProduct.watch.filter(item => item.id !== watchId) : []
                     }));
+                    
                 }
             }
         } catch (error) {

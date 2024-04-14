@@ -95,8 +95,9 @@ function Watchlist() {
                     <h2 className="text-center mb-5">Watchlist Products</h2>
                     <div className="row">
                         <div className="col-lg-12">
-                            <p className='text-end'>{totalUniqueProductsCount} results </p>
+                            {totalUniqueProductsCount > 0 && <p className='text-end'>{totalUniqueProductsCount} results </p>}
                             {/* Product Listing */}
+                            {Array.isArray(products) && products.length > 0 ? (
                             <Row>
                                 {products.map(product => (
                                     <Col className="mb-4" key={product.id} md={6} lg={3}>
@@ -126,6 +127,9 @@ function Watchlist() {
                                     </Col>
                                 ))}
                             </Row>
+                            ) : (
+                                <p className='text-center text-danger fw-bold'>No Products in watchlist</p>
+                            )}
 
                             {/* Pagination */}
                             <nav className="pagination-section" aria-label="Page navigation example">

@@ -45,64 +45,22 @@ function FilterSection({ products, handleSort, navigateToFirstPage, handleFilter
 
             {/* Main filter start  */}
             <div className='filter-section col-12 col-sm-6 col-lg-12'>
-                {/* <Navbar className=''> */}
 
-                    {/* Filter title and filter icon for mobile view */}
-                    {/* <Navbar.Toggle 
-                        className="navbar-toggler" 
-                        aria-controls="filterSection"
-                        onClick={() => setNavbarExpanded(!navbarExpanded)}
+                {/* Category filter */}
+                <Form.Group className="filter-input mb-0 mb-md-4" controlId="category">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Select
+                        value={priceRange}
+                        onChange={handlePriceRangeChange}
                     >
-                        <span>Filter</span>
-                        <span className="navbar-toggler-icon"><i className="fa fa-sliders" aria-hidden="true"></i></span>
-                    </Navbar.Toggle> */}
-                    
-                    {/* Filter menu */}
-                    {/* <Navbar.Collapse className="flex-column" id="filterSection"> */}
-
-                        {/* Filter menu close button for mobile */}
-                        {/* <Navbar.Toggle 
-                            className="navbar-toggler navbar-toggler-close" 
-                            aria-controls="filterSection"
-                            onClick={() => setNavbarExpanded(false)}
-                        >
-                            <span className="navbar-toggler-icon"><i className="fa fa-times-circle" aria-hidden="true"></i></span>
-                        </Navbar.Toggle> */}
-
-                        {/* Platform Filter */}
-                        {/* <Form.Group className="filter-input mb-3" controlId="platform">
-                            <Form.Label>Platform</Form.Label>
-                            <Form.Select
-                                as="select"
-                                name="platform"
-                                value={filters.platform}
-                                
-                            >
-                                {products.map((product, index) => (
-                                    <option key={index} value={product.platform}>
-                                        {product.platform}
-                                    </option>
-                                ))}
-                            </Form.Select>
-                        </Form.Group> */}
-
-                        {/* Category filter */}
-                        <Form.Group className="filter-input mb-0 mb-md-4" controlId="category">
-                            <Form.Label>Price</Form.Label>
-                            <Form.Select
-                                value={priceRange}
-                                onChange={handlePriceRangeChange}
-                            >
-                                <option value="">All</option>
-                                <option value="price__0__100">$0 - $100</option>
-                                <option value="price__100__500">$100 - $500</option>
-                                <option value="price__500__1000">$500 - $1000</option>
-                                <option value="price__1000__2000">$1000 - $2000</option>
-                            </Form.Select>
-                        </Form.Group>
-
-                    {/* </Navbar.Collapse>
-                </Navbar> */}
+                        <option value="">All</option>
+                        <option value="price__0__100">$0 - $100</option>
+                        <option value="price__100__500">$100 - $500</option>
+                        <option value="price__500__1000">$500 - $1000</option>
+                        <option value="price__1000__2000">$1000 - $2000</option>
+                    </Form.Select>
+                </Form.Group>
+                
             </div>
         </div>
     );
