@@ -1,18 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/esm/Image';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 import { Links } from '../App'; 
 
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import axios from 'axios';
 
 function Footer() {
 	const access_token = localStorage.getItem('token');
+	const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:8000/newsletter/', { email });
+            setMessage(response.data.message);
+            setEmail('');
+        } catch (error) {
+            setMessage('An error occurred. Please try again later.');
+            console.error(error);
+        }
+    };
 
   	return (
 		<footer>
@@ -60,6 +78,22 @@ function Footer() {
 										</LinkContainer>
 									)}
 								</Nav>
+								<h5 className='mt-3 mb-2'>SUBSCRIBE TO OUR NEWSLETTER</h5>
+								<Form onSubmit={handleSubmit}>
+									<Form.Group className="mb-3">
+										<Form.Control 
+											type="email" 
+											placeholder="Enter your email"  
+											value={email}
+											onChange={(e) => setEmail(e.target.value)}
+										/>
+									</Form.Group>
+									<Form.Group className="mb-3">
+										<Button variant='primary' type='submit'>
+											Subscribe
+										</Button>
+									</Form.Group>
+								</Form>
 							</div>
 						</Col>
 						
@@ -72,6 +106,7 @@ function Footer() {
 									<li>Email: <a href="mailto:info@pricemate.com">info@pricemate.com</a></li>
 									<li>Phone: <a href="tel:18001234567">1-800-123-4567</a></li>
 								</ul>
+								
 							</div>
 						</Col>
 						
