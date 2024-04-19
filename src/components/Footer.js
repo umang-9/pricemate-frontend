@@ -17,6 +17,7 @@ import axios from 'axios';
 function Footer() {
 	const access_token = localStorage.getItem('token');
 	const [email, setEmail] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -25,10 +26,12 @@ function Footer() {
         try {
             const response = await axios.post('http://localhost:8000/newsletter/', { email });
             setMessage(response.data.message);
+			console.log(response.data.message);
+			setSuccessMessage('You have successfully registered to our newsletter');
             setEmail('');
         } catch (error) {
-            setMessage('An error occurred. Please try again later.');
             console.error(error);
+            setMessage('An error occurred. Please try again later.');
         }
     };
 
@@ -93,6 +96,11 @@ function Footer() {
 											Subscribe
 										</Button>
 									</Form.Group>
+									{successMessage && (
+									<div className="alert alert-success" role="alert">
+										{successMessage}
+									</div>
+								)}
 								</Form>
 							</div>
 						</Col>
