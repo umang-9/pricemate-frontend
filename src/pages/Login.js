@@ -35,7 +35,7 @@ function Login() {
 
 	const onSubmit = async (inputData) => {
 		try {
-			const response = await axios.post('http://localhost:8000/login/', inputData, {
+			const response = await axios.post('https://pricemate-backend.onrender.com/login/', inputData, {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 				},

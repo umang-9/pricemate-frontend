@@ -8,7 +8,7 @@ const Pagination = () => {
 
     const fetchProducts = async (page) => {
         try {
-            const response = await axios.get(`http://localhost:8000/products/list/?page=${page}`);
+            const response = await axios.get(`https://pricemate-backend.onrender.com/products/list/?page=${page}`);
             //const { products, totalPages } = response.data.results;
             setProducts(response.data.results);
             setTotalPages(Math.ceil(response.data.count / 12));

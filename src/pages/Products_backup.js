@@ -33,7 +33,7 @@ function Products() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/products/list/?page=${currentPage}`, {
+                const response = await axios.get(`https://pricemate-backend.onrender.com/products/list/?page=${currentPage}`, {
                     headers: headers,
                 },);
                 setWatchlist(response.data.results.map(product => product.watch));
@@ -111,7 +111,7 @@ function Products() {
             // If the product is not in the watchlist, add it
             if (!isAlreadyInWishlist) {
                 const response = await axios.post(
-                    'http://localhost:8000/products/watch/',
+                    'https://pricemate-backend.onrender.com/products/watch/',
                     { product: productId },
                     {
                         headers: headers,

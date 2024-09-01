@@ -31,7 +31,7 @@ function ProductRequest() {
 		}
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/products/request/',
+				'https://pricemate-backend.onrender.com/products/request/',
 				inputData,
 				{
 					headers: headers,

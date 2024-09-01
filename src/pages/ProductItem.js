@@ -31,7 +31,7 @@ function ProductItem() {
 	useEffect(() => {
 		const fetchProductDetails = async () => {
 			try {
-				const response = await axios.get(`http://localhost:8000/products/detail/${id}`, {
+				const response = await axios.get(`https://pricemate-backend.onrender.com/products/detail/${id}`, {
 					headers: headers,
 				},);
 				setProduct(response.data);

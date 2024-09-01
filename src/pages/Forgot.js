@@ -25,7 +25,7 @@ function Forgot() {
 
     const onSubmit = async (inputData) => {
         try {
-            await axios.post('http://localhost:8000/forgot-password/', inputData, {
+            await axios.post('https://pricemate-backend.onrender.com/forgot-password/', inputData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 },

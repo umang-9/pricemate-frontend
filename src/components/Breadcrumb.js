@@ -11,7 +11,7 @@ const Breadcrumb = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/products/detail/${id}`);
+        const response = await fetch(`https://pricemate-backend.onrender.com/products/detail/${id}`);
         const data = await response.json();
         setProductName(data.title); // Assuming the product name is in 'name' field
       } catch (error) {

@@ -9,7 +9,7 @@ const SearchBar = (props) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:8000/products/search/?q=${query}`);
+            const response = await fetch(`https://pricemate-backend.onrender.com/products/search/?q=${query}`);
             if (response.ok) {
                 const data = await response.json();
 

@@ -17,7 +17,7 @@ function Signup() {
 
 	const onSubmit = async (data) => {
 		try {
-			const response = await axios.post('http://localhost:8000/signup/', data);
+			const response = await axios.post('https://pricemate-backend.onrender.com/signup/', data);
 			setSuccessMessage('Signup successful! You will be redirected to the login page.');
 			setTimeout(() => {
 				navigate('/login');

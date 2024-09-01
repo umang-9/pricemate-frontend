@@ -24,7 +24,7 @@ function Footer() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8000/newsletter/', { email });
+            const response = await axios.post('https://pricemate-backend.onrender.com/newsletter/', { email });
             setMessage(response.data.message);
 			console.log(response.data.message);
 			setSuccessMessage('You have successfully registered to our newsletter');

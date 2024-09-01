@@ -32,7 +32,7 @@ function Forgot_Password_Confirm() {
     const onSubmit = async (inputData) => {
         inputData = { ...inputData, token }  // Add the token
         try {
-            const response = await axios.post('http://localhost:8000/forgot-password/confirm/', inputData);
+            const response = await axios.post('https://pricemate-backend.onrender.com/forgot-password/confirm/', inputData);
             if (response.status === 200) {
                 setSuccessMessage('Password changed successfully! You will be redirected to the login page.');
                 setTimeout(() => {
