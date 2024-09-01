@@ -20,7 +20,7 @@ const WatchList = ({ product, token, headers, setProduct }) => {
         try {   
             if (productId != null) {
                 const response = await axios.post(
-                    'http://127.0.0.1:8000/products/watch/',
+                    'https://pricemate-backend.onrender.com/products/watch/',
                     { product: productId },
                     { headers: headers }
                 );
@@ -51,7 +51,7 @@ const WatchList = ({ product, token, headers, setProduct }) => {
         try {
             if (watchId === null) {
                 const response = await axios.post(
-                    'http://127.0.0.1:8000/products/watch/',
+                    'https://pricemate-backend.onrender.com/products/watch/',
                     { product: productId },
                     { headers: headers }
                 );
@@ -69,7 +69,7 @@ const WatchList = ({ product, token, headers, setProduct }) => {
                 }
             } else {
                 const response = await axios.delete(
-                    `http://127.0.0.1:8000/products/watch/delete/${watchId}/`,
+                    `https://pricemate-backend.onrender.com/products/watch/delete/${watchId}/`,
                     { headers: headers }
                 );
                 if (response.status === 204) {

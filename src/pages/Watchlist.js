@@ -32,7 +32,7 @@ function Watchlist() {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(
-                    `http://127.0.0.1:8000/products/list/?filterby=watching`,
+                    `https://pricemate-backend.onrender.com/products/list/?filterby=watching`,
                     { headers: headers }
                 );
                 const { results, next, previous, count } = response.data;

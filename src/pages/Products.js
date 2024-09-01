@@ -22,7 +22,7 @@ function Products() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                let url = `http://127.0.0.1:8000/products/list/?page=${currentPage}`;
+                let url = `https://pricemate-backend.onrender.com/products/list/?page=${currentPage}`;
                 if (sortBy) {
                     url += `&orderby=${sortBy}`;
                 }
