@@ -12,7 +12,7 @@ const WatchList = ({ product, token, headers, setProduct }) => {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    const isProductInWatchlist = product.watch.some(watchItem => String(watchItem.product) === String(id));
+    // const isProductInWatchlist = product.watch.some(watchItem => String(watchItem.product) === String(id));
 
     // console.log("isProductInWatchlist:" +isProductInWatchlist);
 
