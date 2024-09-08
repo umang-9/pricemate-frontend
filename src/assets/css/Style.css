@@ -503,6 +503,9 @@ div#filterSection > * {
     box-shadow: none;
     outline: none;
 }
+.product-details-section .col-md-6 img {
+    max-height: 500px;
+}
 /* Product page css end */
 
 

@@ -122,7 +122,6 @@ function Products() {
                                     <Col className="mb-4" key={product.id} md={6} lg={4}>
                                         <div className="product">
                                             <Link
-                                                onClick={() => window.top(0, 0)}
                                                 to={`/products/detail/${product.id}`}
                                                 className="product-header"
                                             >
